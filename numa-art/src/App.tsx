@@ -16,18 +16,54 @@ const RATIO_CONFIG = {
 
 export default function ImageGenerator() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const rafRef = useRef<number | null>(null)
+  const grainCanvasRef = useRef<HTMLCanvasElement | null>(null)
   const [title, setTitle] = useState("numa.001")
   const [subtitle, setSubtitle] = useState("under the sun")
   const [mark, setMark] = useState("n.")
-  const [color1, setColor1] = useState("#f5e6d3")
-  const [color2, setColor2] = useState("#e8d4b8")
+  const [colors, setColors] = useState<string[]>(["#f5e6d3", "#e8d4b8"]) // gradient stops
   const [grainIntensity, setGrainIntensity] = useState(0.15)
   const [letterSpacing, setLetterSpacing] = useState(40)
   const [ratio, setRatio] = useState<Ratio>("square")
 
   useEffect(() => {
-    drawCanvas()
-  }, [title, subtitle, mark, color1, color2, grainIntensity, letterSpacing, ratio])
+    scheduleDraw()
+  }, [title, subtitle, mark, colors, grainIntensity, letterSpacing, ratio])
+
+  useEffect(() => {
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
+    }
+  }, [])
+
+  const scheduleDraw = () => {
+    if (rafRef.current) cancelAnimationFrame(rafRef.current)
+    rafRef.current = requestAnimationFrame(drawCanvas)
+  }
+
+  const getGrainCanvas = (width: number, height: number) => {
+    let grain = grainCanvasRef.current
+    if (!grain || grain.width !== width || grain.height !== height) {
+      grain = document.createElement("canvas")
+      grain.width = width
+      grain.height = height
+      const gctx = grain.getContext("2d")
+      if (gctx) {
+        const imageData = gctx.createImageData(width, height)
+        const data = imageData.data
+        for (let i = 0; i < data.length; i += 4) {
+          const v = Math.random() * 255
+          data[i] = v
+          data[i + 1] = v
+          data[i + 2] = v
+          data[i + 3] = 255
+        }
+        gctx.putImageData(imageData, 0, 0)
+      }
+      grainCanvasRef.current = grain
+    }
+    return grainCanvasRef.current!
+  }
 
   const drawCanvas = () => {
     const canvas = canvasRef.current
@@ -39,23 +75,28 @@ export default function ImageGenerator() {
     const width = canvas.width
     const height = canvas.height
 
-    // Create gradient background
-    const gradient = ctx.createLinearGradient(0, 0, width, height)
-    gradient.addColorStop(0, color1)
-    gradient.addColorStop(1, color2)
-    ctx.fillStyle = gradient
+    // Create gradient background (supports 1+ stops)
+    let fillStyle: CanvasGradient | string
+    if (colors.length <= 1) {
+      fillStyle = colors[0] ?? "#ffffff"
+    } else {
+      const gradient = ctx.createLinearGradient(0, 0, width, height)
+      const step = 1 / (colors.length - 1)
+      colors.forEach((c, i) => {
+        gradient.addColorStop(i * step, c)
+      })
+      fillStyle = gradient
+    }
+    ctx.fillStyle = fillStyle
     ctx.fillRect(0, 0, width, height)
 
-    // Add grain texture
-    const imageData = ctx.getImageData(0, 0, width, height)
-    const data = imageData.data
-    for (let i = 0; i < data.length; i += 4) {
-      const noise = (Math.random() - 0.5) * grainIntensity * 255
-      data[i] += noise
-      data[i + 1] += noise
-      data[i + 2] += noise
-    }
-    ctx.putImageData(imageData, 0, 0)
+    // Overlay precomputed grain texture for performance
+    const grain = getGrainCanvas(width, height)
+    ctx.save()
+    ctx.globalAlpha = grainIntensity
+    ctx.globalCompositeOperation = "soft-light"
+    ctx.drawImage(grain, 0, 0, width, height)
+    ctx.restore()
 
     // Set text properties
     ctx.fillStyle = "rgba(45, 45, 45, 0.85)"
@@ -84,6 +125,38 @@ export default function ImageGenerator() {
     }
   }
 
+  const setColorAt = (index: number, value: string) => {
+    setColors((prev) => prev.map((c, i) => (i === index ? value : c)))
+  }
+
+  const addColorStop = () => {
+    setColors((prev) => [...prev, prev[prev.length - 1] ?? "#e8d4b8"])
+  }
+
+  const removeColorStop = (index: number) => {
+    setColors((prev) => (prev.length <= 2 ? prev : prev.filter((_, i) => i !== index)))
+  }
+
+  const hexToRgb = (hex: string) => {
+    const m = hex.replace('#','').match(/.{1,2}/g)
+    if (!m) return { r: 255, g: 255, b: 255 }
+    const [r, g, b] = m.map((x) => parseInt(x.length === 1 ? x + x : x, 16))
+    return { r, g, b }
+  }
+
+  const rgbToHex = (r: number, g: number, b: number) => {
+    const toHex = (v: number) => Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, '0')
+    return `#${toHex(r)}${toHex(g)}${toHex(b)}`
+  }
+
+  const interpolate = (a: number, b: number, t: number) => a + (b - a) * t
+
+  const interpolateHex = (c1: string, c2: string, t: number) => {
+    const A = hexToRgb(c1)
+    const B = hexToRgb(c2)
+    return rgbToHex(interpolate(A.r, B.r, t), interpolate(A.g, B.g, t), interpolate(A.b, B.b, t))
+  }
+
   const downloadImage = () => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -95,16 +168,25 @@ export default function ImageGenerator() {
   }
 
   const randomizeColors = () => {
-    const warmColors = [
+    const palettes: [string, string][] = [
       ["#f5e6d3", "#e8d4b8"],
       ["#ffecd2", "#fcb69f"],
       ["#fff1e6", "#fde1d7"],
       ["#fef4e4", "#f7d9c4"],
       ["#ffe8d6", "#f4c4a0"],
     ]
-    const random = warmColors[Math.floor(Math.random() * warmColors.length)]
-    setColor1(random[0])
-    setColor2(random[1])
+    const [start, end] = palettes[Math.floor(Math.random() * palettes.length)]
+    if (colors.length <= 2) {
+      setColors([start, end])
+    } else {
+      // generate a multi-stop gradient by interpolating between start/end
+      const stops: string[] = []
+      for (let i = 0; i < colors.length; i++) {
+        const t = i / (colors.length - 1)
+        stops.push(interpolateHex(start, end, t))
+      }
+      setColors(stops)
+    }
   }
 
   const currentRatio = RATIO_CONFIG[ratio]
@@ -222,45 +304,41 @@ export default function ImageGenerator() {
                   </Button>
                 </div>
                 <div className="space-y-4">
-                  <div>
-                    <Label htmlFor="color1" className="font-mono">
-                      Gradient Start
-                    </Label>
-                    <div className="flex gap-2 mt-1">
-                      <Input
-                        id="color1"
-                        type="color"
-                        value={color1}
-                        onChange={(e) => setColor1(e.target.value)}
-                        className="w-20 h-10 p-1 cursor-pointer"
-                      />
-                      <Input
-                        value={color1}
-                        onChange={(e) => setColor1(e.target.value)}
-                        className="font-mono"
-                        placeholder="#f5e6d3"
-                      />
+                  {colors.map((c, i) => (
+                    <div key={i}>
+                      <Label htmlFor={`color-${i}`} className="font-mono">
+                        {`Stop ${i + 1}`}
+                      </Label>
+                      <div className="flex gap-2 mt-1 items-center">
+                        <Input
+                          id={`color-${i}`}
+                          type="color"
+                          value={c}
+                          onChange={(e) => setColorAt(i, e.target.value)}
+                          className="w-20 h-10 p-1 cursor-pointer"
+                        />
+                        <Input
+                          value={c}
+                          onChange={(e) => setColorAt(i, e.target.value)}
+                          className="font-mono"
+                          placeholder="#f5e6d3"
+                        />
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="font-mono"
+                          onClick={() => removeColorStop(i)}
+                          disabled={colors.length <= 2}
+                        >
+                          Remove
+                        </Button>
+                      </div>
                     </div>
-                  </div>
-                  <div>
-                    <Label htmlFor="color2" className="font-mono">
-                      Gradient End
-                    </Label>
-                    <div className="flex gap-2 mt-1">
-                      <Input
-                        id="color2"
-                        type="color"
-                        value={color2}
-                        onChange={(e) => setColor2(e.target.value)}
-                        className="w-20 h-10 p-1 cursor-pointer"
-                      />
-                      <Input
-                        value={color2}
-                        onChange={(e) => setColor2(e.target.value)}
-                        className="font-mono"
-                        placeholder="#e8d4b8"
-                      />
-                    </div>
+                  ))}
+                  <div className="flex gap-2">
+                    <Button variant="outline" size="sm" className="font-mono" onClick={addColorStop}>
+                      Add Stop
+                    </Button>
                   </div>
                 </div>
               </div>

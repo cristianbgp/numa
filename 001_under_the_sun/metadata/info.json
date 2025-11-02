@@ -5,6 +5,7 @@
   "description": "a warm lofi journey for slow summer days. sounds for still moments, drifting light, and quiet warmth.",
   "release_date": "2025-11-01",
   "duration": "00:20:00",
+  "colors": ["#f5e6d3", "#e8d4b8"],
   "tracks": [
     {
       "index": 1,
