@@ -7,7 +7,7 @@
   "subtitle_color": "#e0e0e0",
   "description": "a cool lofi drift for rainy evenings. quiet rooms, neon reflections, and gentle rhodes under a soft drizzle.",
   "release_date": "TBD",
-  "duration": "00:24:51",
+  "duration": "00:24:40",
   "tracks": [
     {
       "index": 1,
@@ -19,55 +19,55 @@
       "index": 2,
       "title": "window light",
       "duration": "1:54",
-      "timestamp": "02:19"
+      "timestamp": "02:17"
     },
     {
       "index": 3,
       "title": "vinyl rain",
       "duration": "4:15",
-      "timestamp": "04:13"
+      "timestamp": "04:10"
     },
     {
       "index": 4,
       "title": "afterglow neon",
       "duration": "2:03",
-      "timestamp": "08:28"
+      "timestamp": "08:25"
     },
     {
       "index": 5,
       "title": "gentle rhodes",
       "duration": "2:28",
-      "timestamp": "10:31"
+      "timestamp": "10:26"
     },
     {
       "index": 6,
       "title": "puddle chorus",
       "duration": "2:16",
-      "timestamp": "12:59"
+      "timestamp": "12:53"
     },
     {
       "index": 7,
       "title": "street hush",
       "duration": "2:23",
-      "timestamp": "15:15"
+      "timestamp": "15:08"
     },
     {
       "index": 8,
       "title": "amber umbrellas",
       "duration": "2:10",
-      "timestamp": "17:38"
+      "timestamp": "17:29"
     },
     {
       "index": 9,
       "title": "late bus echo",
       "duration": "2:44",
-      "timestamp": "19:48"
+      "timestamp": "19:38"
     },
     {
       "index": 10,
       "title": "quiet apartment",
       "duration": "2:19",
-      "timestamp": "22:32"
+      "timestamp": "22:21"
     }
   ],
   "created_with": "Suno AI Pro",
