@@ -1,0 +1,77 @@
+{
+  "id": "numa.003",
+  "title": "neon dust",
+  "theme": "nocturnal, city lights, vaporwave",
+  "description": "a hazy lofi drift through empty streets after midnight. glowing reflections, analog warmth, and a touch of melancholy in the city night.",
+  "release_date": "TBD",
+  "duration": "TBD",
+  "colors": ["#2a1f3d", "#4a3f5e"],
+  "title_color": "#d4a5ff",
+  "subtitle_color": "#d4a5ff",
+  "tracks": [
+    {
+      "index": 1,
+      "title": "midnight chrome",
+      "duration": "TBD",
+      "timestamp": "TBD"
+    },
+    {
+      "index": 2,
+      "title": "vapor streets",
+      "duration": "TBD",
+      "timestamp": "TBD"
+    },
+    {
+      "index": 3,
+      "title": "lost signals",
+      "duration": "TBD",
+      "timestamp": "TBD"
+    },
+    {
+      "index": 4,
+      "title": "electric haze",
+      "duration": "TBD",
+      "timestamp": "TBD"
+    },
+    {
+      "index": 5,
+      "title": "phantom glow",
+      "duration": "TBD",
+      "timestamp": "TBD"
+    },
+    {
+      "index": 6,
+      "title": "city echoes",
+      "duration": "TBD",
+      "timestamp": "TBD"
+    },
+    {
+      "index": 7,
+      "title": "dim walkway",
+      "duration": "TBD",
+      "timestamp": "TBD"
+    },
+    {
+      "index": 8,
+      "title": "velvet pixels",
+      "duration": "TBD",
+      "timestamp": "TBD"
+    },
+    {
+      "index": 9,
+      "title": "faded neon",
+      "duration": "TBD",
+      "timestamp": "TBD"
+    },
+    {
+      "index": 10,
+      "title": "slow motion blur",
+      "duration": "TBD",
+      "timestamp": "TBD"
+    }
+  ],
+  "created_with": "Suno AI Pro",
+  "mixed_with": "Audacity",
+  "license": "All rights reserved © numa.channel 2025"
+}
+
