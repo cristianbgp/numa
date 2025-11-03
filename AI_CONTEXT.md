@@ -21,9 +21,11 @@ NNN_theme/
 │  ├─ info.json              # structured metadata (see schema below)
 │  ├─ description.txt        # YouTube description (tracklist, about)
 │  ├─ tags.txt               # SEO tags, one per line
-│  └─ tracklist.txt          # Simple track list and durations
+│  ├─ tracklist.txt          # Simple track list and durations
+│  └─ prompt.txt             # AI generation prompt template (optional)
 ├─ mix/
-│  └─ <final-mix>.wav        # final continuous mix
+│  ├─ <release>_mix.wav      # final continuous mix (WAV format)
+│  └─ <release>_mix.mp3      # final continuous mix (MP3 format, 320kbps)
 ├─ tracks/                   # individual track WAVs (optional)
 └─ videos/
    └─ <release>.mp4          # rendered video output (generated)
@@ -101,6 +103,18 @@ warm lofi instrumental with gentle vinyl crackle, soft electric piano and mellow
   - Writes output to `videos/<folderName>.mp4`
   - ffmpeg args: `-loop 1 -c:v libx264 -tune stillimage -c:a aac -b:a 192k -pix_fmt yuv420p -shortest -vf scale=1920:1080,format=yuv420p -y`
 
+### Mix generation (generate-mix.ts)
+- CLI: `bun generate-mix.ts <release-folder> [--crossfade <seconds>]` (e.g., `bun generate-mix.ts 002_evening_rain --crossfade 2`)
+- Behavior:
+  - Validates `<folder>` exists
+  - Reads all `.wav` files from `tracks/` subdirectory
+  - Sorts tracks numerically by filename (e.g., `01_track.wav`, `02_track.wav`)
+  - Uses ffmpeg `acrossfade` filter to crossfade between tracks
+  - Default crossfade duration: 2 seconds (customizable via `--crossfade` flag)
+  - Writes outputs to `mix/<folderName>_mix.wav` and `mix/<folderName>_mix.mp3`
+  - MP3 encoding: 320kbps with libmp3lame
+- Crossfade parameters: `d=<duration>:c1=tri:c2=tri` (triangular fade curves)
+
 ### Artwork generator (`/numa-art`)
 - React + TypeScript app to create cover and YouTube backgrounds.
 - Features: ratio toggle (square / landscape), gradient colors, grain intensity, letter spacing, title/subtitle/mark controls, PNG export.
@@ -113,11 +127,13 @@ warm lofi instrumental with gentle vinyl crackle, soft electric piano and mellow
 ### New release checklist
 1. Create new folder `NNN_theme-slug/` with required subfolders.
 2. Produce artwork via `/numa-art` and save to `artwork/cover.png` and `artwork/yt_background.png`.
-3. Place final mixed audio `mix/<something>.wav`.
-4. Fill `metadata/` files (`info.json`, `description.txt`, `tags.txt`, `tracklist.txt`).
-5. Render video:
+3. Place individual tracks in `tracks/` (named `01_track.wav`, `02_track.wav`, etc.).
+4. Generate mix with crossfades:
+   - `bun generate-mix.ts NNN_theme-slug --crossfade 3`
+5. Fill `metadata/` files (`info.json`, `description.txt`, `tags.txt`, `tracklist.txt`, `prompt.txt`).
+6. Render video:
    - `bun generate-video.ts NNN_theme-slug`
-6. Upload to YouTube using the metadata files.
+7. Upload to YouTube using the metadata files.
 
 ### Notes for AI agents
 - Prefer Bun Shell for command execution and scripting. Example:
