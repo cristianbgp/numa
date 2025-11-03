@@ -1,0 +1,36 @@
+---
+import Layout from "@/layouts/main.astro";
+import MixCard from "@/components/MixCard.astro";
+import { mixes as mixData } from "@/data/mixes";
+import Container from "@/layouts/container.astro";
+
+// Transform mix data for MixCard component
+const releasedMixes = mixData
+  .filter((mix) => Boolean(mix.youtubeUrl))
+  .map((mix) => ({
+    number: mix.id,
+    title: mix.title,
+    description: mix.description,
+    youtubeUrl: mix.youtubeUrl,
+    colors: mix.colors,
+    titleColor: mix.title_color,
+  }));
+---
+
+<Layout>
+  <Container>
+    <!-- Header -->
+    <div class="text-center mb-16 space-y-4">
+      <h1 class="text-2xl font-light opacity-90">sound journals</h1>
+      <p class="text-sm opacity-60 max-w-xl mx-auto">
+        each mix is a moment captured in sound. listen with intention, in spaces
+        that welcome stillness.
+      </p>
+    </div>
+
+    <!-- Mixes Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+      {releasedMixes.map((mix) => <MixCard {...mix} />)}
+    </div>
+  </Container>
+</Layout>

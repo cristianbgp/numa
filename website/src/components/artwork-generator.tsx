@@ -50,7 +50,7 @@ const SAVED_STYLES: SavedStyle[] = [
   },
 ];
 
-export default function ImageGenerator() {
+export default function ArtworkGenerator() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const rafRef = useRef<number | null>(null);
   const grainCanvasRef = useRef<HTMLCanvasElement | null>(null);

@@ -8,6 +8,7 @@
   "colors": ["#f5e6d3", "#e8d4b8"],
   "title_color": "#2d2d2d",
   "subtitle_color": "#2d2d2d",
+  "youtubeUrl": "https://www.youtube.com/watch?v=7rvox0fYgyY",
   "tracks": [
     {
       "index": 1,
@@ -71,6 +72,5 @@
     }
   ],
   "created_with": "Suno AI Pro",
-  "mixed_with": "Audacity",
   "license": "All rights reserved © numa.channel 2025"
 }

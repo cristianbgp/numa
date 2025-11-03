@@ -1,0 +1,27 @@
+---
+import "../styles/global.css";
+import Navbar from "@/components/Navbar.astro";
+const { title = "numa.channel" } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+	<meta name="description" content="numa is a series of minimalist sound journals. each mix captures a single feeling — a moment in time. created for calm spaces and unhurried hours." />
+  </head>
+  <body class="noise-overlay">
+    <Navbar />
+    <main class="mt-[53px]">
+      <slot />
+    </main>
+  </body>
+</html>

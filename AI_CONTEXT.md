@@ -68,7 +68,6 @@ Example from `001_under_the_sun`:
     // ... more tracks ...
   ],
   "created_with": "Suno AI Pro",
-  "mixed_with": "Audacity",
   "license": "All rights reserved © numa.channel 2025"
 }
 ```
@@ -129,11 +128,28 @@ warm lofi instrumental with gentle vinyl crackle, soft electric piano and mellow
 2. Produce artwork via `/numa-art` and save to `artwork/cover.png` and `artwork/yt_background.png`.
 3. Place individual tracks in `tracks/` (named `01_track.wav`, `02_track.wav`, etc.).
 4. Generate mix with crossfades:
-   - `bun generate-mix.ts NNN_theme-slug --crossfade 3`
+   - `bun generate-mix.ts NNN_theme-slug --crossfade 2` (or `just mix NNN_theme-slug`)
 5. Fill `metadata/` files (`info.json`, `description.txt`, `tags.txt`, `tracklist.txt`, `prompt.txt`).
 6. Render video:
-   - `bun generate-video.ts NNN_theme-slug`
-7. Upload to YouTube using the metadata files.
+   - `bun generate-video.ts NNN_theme-slug` (or `just video NNN_theme-slug`)
+7. Sync data to website:
+   - `bun scripts/sync-mix-data.ts` (or `just sync-data`)
+8. Upload to YouTube using the metadata files.
+
+### Website data sync
+- Mix metadata is synced from `metadata/info.json` files to `website/src/data/mixes.ts`
+- Run `bun scripts/sync-mix-data.ts` or `just sync-data` after updating any info.json
+- The website uses this TypeScript data file for displaying mixes
+
+### Justfile commands
+Quick commands via `just`:
+- `just mix <release> [crossfade]` - Generate mix (default 2s crossfade)
+- `just video <release>` - Generate video
+- `just full <release> [crossfade]` - Generate both mix and video
+- `just sync-data` - Sync mix data to website
+- `just validate <release>` - Validate release files
+- `just releases` - List all releases
+- `just info <release>` - Show release metadata
 
 ### Notes for AI agents
 - Prefer Bun Shell for command execution and scripting. Example:
@@ -145,5 +161,6 @@ await $`ffmpeg -i ${"in.wav"} -y ${"out.mp4"}`;
 
 - Avoid adding large binaries to the repo; media files are gitignored.
 - Keep visuals and copy consistent with the minimalist, warm, calm aesthetic.
+- Default crossfade is 2 seconds between tracks
 
 

@@ -1,0 +1,53 @@
+---
+interface Props {
+  number: string;
+  title: string;
+  description: string;
+  youtubeUrl?: string;
+  colors: string[];
+  titleColor: string;
+}
+
+const { number, title, description, youtubeUrl, colors, titleColor } = Astro.props;
+
+// Create inline gradient style - supports any number of colors
+const gradientStyle = colors.length === 1 
+  ? `background: ${colors[0]}` 
+  : `background: linear-gradient(135deg, ${colors.join(', ')})`;
+---
+
+<div class="group space-y-4">
+  <!-- Cover Art -->
+  <a 
+    href={youtubeUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="block aspect-square w-full rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02]"
+  >
+    <div 
+      class="w-full h-full flex items-center justify-center text-lg font-light"
+      style={`${gradientStyle}; color: ${titleColor}`}
+    >
+      {number}
+    </div>
+  </a>
+  
+  <!-- Mix Info -->
+  <div class="space-y-2">
+    <h3 class="text-sm font-medium">
+      {number} — {title}
+    </h3>
+    <p class="text-sm opacity-60 leading-relaxed">
+      {description}
+    </p>
+    <a 
+      href={youtubeUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-block text-xs opacity-50 hover:opacity-100 transition-opacity border-b border-current pb-0.5"
+    >
+      listen on youtube →
+    </a>
+  </div>
+</div>
+

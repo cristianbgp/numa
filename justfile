@@ -26,6 +26,11 @@ full release crossfade="2":
   @just video {{release}}
   @echo "✅ Done! Video ready at {{release}}/videos/"
 
+# Sync mix data from info.json to website
+sync-data:
+  @echo "🔄 Syncing mix data to website..."
+  bun scripts/sync-mix-data.ts
+
 # List all releases
 releases:
   @echo "Available releases:"

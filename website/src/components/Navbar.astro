@@ -1,0 +1,58 @@
+---
+import MobileMenu from "@/components/MobileMenu";
+
+const currentPath = Astro.url.pathname;
+---
+
+<nav
+  class="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm bg-background/80 border-b border-border/50"
+>
+  <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+    <a href="/" class="text-sm font-medium hover:opacity-70 transition-opacity">
+      numa.channel
+    </a>
+    
+    <!-- Mobile Menu -->
+    <MobileMenu client:load currentPath={currentPath} />
+    
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex gap-6 text-sm">
+      <a
+        href="/"
+        class:list={[
+          "hover:opacity-70 transition-opacity",
+          currentPath === "/" && "opacity-50",
+        ]}
+      >
+        home
+      </a>
+      <a
+        href="/mixes"
+        class:list={[
+          "hover:opacity-70 transition-opacity",
+          currentPath === "/mixes" && "opacity-50",
+        ]}
+      >
+        mixes
+      </a>
+      <a
+        href="/about"
+        class:list={[
+          "hover:opacity-70 transition-opacity",
+          currentPath === "/about" && "opacity-50",
+        ]}
+      >
+        about
+      </a>
+      <a
+        href="/support"
+        class:list={[
+          "hover:opacity-70 transition-opacity",
+          currentPath === "/support" && "opacity-50",
+        ]}
+      >
+        support
+      </a>
+    </div>
+  </div>
+</nav>

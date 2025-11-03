@@ -1,0 +1,40 @@
+---
+import Layout from "@/layouts/main.astro";
+import Container from "@/layouts/container.astro";
+---
+
+<Layout>
+  <Container>
+    <div class="">
+      <h1 class="text-5xl font-light">n.</h1>
+    </div>
+    <div class="space-y-4 pt-8 opacity-90">
+      <p class="text-base leading-relaxed">
+        numa is a series of minimalist sound journals.
+      </p>
+      <p class="text-base leading-relaxed">
+        each mix captures a single feeling — a moment in time.
+      </p>
+      <p class="text-base leading-relaxed">
+        created for calm spaces and unhurried hours.
+      </p>
+    </div>
+
+    <div class="pt-8 flex flex-col gap-2 w-fit">
+      <a
+        href="https://www.youtube.com/@numa.000"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block text-sm opacity-60 hover:opacity-100 transition-opacity duration-300 border-b border-current pb-1"
+      >
+        watch on YouTube →
+      </a>
+      <a
+        href="/mixes"
+        class="inline-block text-sm opacity-60 hover:opacity-100 transition-opacity duration-300 border-b border-current pb-1"
+      >
+        explore all mixes →
+      </a>
+    </div>
+  </Container>
+</Layout>
