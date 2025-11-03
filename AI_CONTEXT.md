@@ -56,6 +56,8 @@ Example from `001_under_the_sun`:
   "title": "under the sun",
   "theme": "summer, warmth, stillness",
   "colors": ["#f5e6d3", "#e8d4b8"],
+  "title_color": "#2d2d2d",
+  "subtitle_color": "#2d2d2d",
   "description": "a warm lofi journey for slow summer days. sounds for still moments, drifting light, and quiet warmth.",
   "release_date": "2025-11-01",
   "duration": "00:20:00",
@@ -70,8 +72,20 @@ Example from `001_under_the_sun`:
 ```
 
 `colors` is an array of hex strings used for the gradient background to keep visual identity consistent across artwork outputs.
+`title_color` and `subtitle_color` are hex strings defining text colors for the main title and subtitle in generated artwork.
 
 `metadata/description.txt` is the human-friendly YouTube description (intro, tracklist with timestamps, about blurb). `metadata/tags.txt` lists YouTube tags, one per line (e.g., lofi, chill beats, study music, minimal lofi, numa, release name).
+
+### Prompts (metadata/prompt.txt)
+Each release can include a short prompt file to guide track generation in external tools (e.g., Suno). Keep it concise and focused on mood, core instruments, texture, and context. Include a `title: [track name here]` suffix.
+
+Examples:
+
+Under the Sun (numa.001)
+
+```
+warm lofi instrumental with gentle vinyl crackle, soft electric piano and mellow drums, evokes a quiet summer afternoon under the sun, nostalgic and dreamy mood, relaxed tempo, minimal and organic textures, soothing and reflective atmosphere. title: [track name here]
+```
 
 ### Tooling and rules
 - This repo uses **Bun** for scripts and shelling. Prefer Bun over Node/npm/pnpm.

@@ -21,6 +21,8 @@ export default function ImageGenerator() {
   const [title, setTitle] = useState("numa.001")
   const [subtitle, setSubtitle] = useState("under the sun")
   const [mark, setMark] = useState("n.")
+  const [titleColor, setTitleColor] = useState<string>("#2d2d2d")
+  const [subtitleColor, setSubtitleColor] = useState<string>("#2d2d2d")
   const [colors, setColors] = useState<string[]>(["#f5e6d3", "#e8d4b8"]) // gradient stops
   const [grainIntensity, setGrainIntensity] = useState(0.15)
   const [letterSpacing, setLetterSpacing] = useState(40)
@@ -28,7 +30,7 @@ export default function ImageGenerator() {
 
   useEffect(() => {
     scheduleDraw()
-  }, [title, subtitle, mark, colors, grainIntensity, letterSpacing, ratio])
+  }, [title, subtitle, mark, titleColor, subtitleColor, colors, grainIntensity, letterSpacing, ratio])
 
   useEffect(() => {
     return () => {
@@ -99,7 +101,8 @@ export default function ImageGenerator() {
     ctx.restore()
 
     // Set text properties
-    ctx.fillStyle = "rgba(45, 45, 45, 0.85)"
+    const defaultTextColor = "rgba(45, 45, 45, 0.85)"
+    ctx.fillStyle = defaultTextColor
     ctx.textBaseline = "bottom"
 
     // Calculate font size based on canvas size
@@ -109,14 +112,17 @@ export default function ImageGenerator() {
     ctx.font = `${baseFontSize}px "Geist Mono", monospace`
     ctx.letterSpacing = `${letterSpacing}px`
     const titleY = height - baseFontSize * 2.5
+    ctx.fillStyle = titleColor
     ctx.fillText(title, baseFontSize * 0.8, titleY)
 
     // Draw subtitle
     const subtitleY = height - baseFontSize * 1.2
+    ctx.fillStyle = subtitleColor
     ctx.fillText(subtitle, baseFontSize * 0.8, subtitleY)
 
     // Draw mark (top-right)
     if (mark) {
+      ctx.fillStyle = defaultTextColor
       ctx.globalAlpha = 0.5
       ctx.font = `${baseFontSize * 0.65}px "Geist Mono", monospace`
       const markWidth = ctx.measureText(mark).width
@@ -253,6 +259,26 @@ export default function ImageGenerator() {
                       className="font-mono"
                       placeholder="numa.001"
                     />
+                    <div className="mt-3">
+                      <Label htmlFor="titleColor" className="font-mono">
+                        Title Color
+                      </Label>
+                      <div className="flex gap-2 mt-1">
+                        <Input
+                          id="titleColor"
+                          type="color"
+                          value={titleColor}
+                          onChange={(e) => setTitleColor(e.target.value)}
+                          className="w-20 h-10 p-1 cursor-pointer"
+                        />
+                        <Input
+                          value={titleColor}
+                          onChange={(e) => setTitleColor(e.target.value)}
+                          className="font-mono"
+                          placeholder="#2d2d2d"
+                        />
+                      </div>
+                    </div>
                   </div>
                   <div>
                     <Label htmlFor="subtitle" className="font-mono">
@@ -265,6 +291,26 @@ export default function ImageGenerator() {
                       className="font-mono"
                       placeholder="under the sun"
                     />
+                    <div className="mt-3">
+                      <Label htmlFor="subtitleColor" className="font-mono">
+                        Subtitle Color
+                      </Label>
+                      <div className="flex gap-2 mt-1">
+                        <Input
+                          id="subtitleColor"
+                          type="color"
+                          value={subtitleColor}
+                          onChange={(e) => setSubtitleColor(e.target.value)}
+                          className="w-20 h-10 p-1 cursor-pointer"
+                        />
+                        <Input
+                          value={subtitleColor}
+                          onChange={(e) => setSubtitleColor(e.target.value)}
+                          className="font-mono"
+                          placeholder="#2d2d2d"
+                        />
+                      </div>
+                    </div>
                   </div>
                   <div>
                     <Label htmlFor="mark" className="font-mono">

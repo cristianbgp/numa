@@ -3,9 +3,11 @@
   "title": "under the sun",
   "theme": "summer, warmth, stillness",
   "description": "a warm lofi journey for slow summer days. sounds for still moments, drifting light, and quiet warmth.",
-  "release_date": "2025-11-01",
+  "release_date": "TBD",
   "duration": "00:20:00",
   "colors": ["#f5e6d3", "#e8d4b8"],
+  "title_color": "#2d2d2d",
+  "subtitle_color": "#2d2d2d",
   "tracks": [
     {
       "index": 1,

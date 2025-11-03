@@ -1,0 +1,76 @@
+{
+  "id": "numa.002",
+  "title": "evening rain",
+  "theme": "dusk, rain, window light",
+  "colors": ["#a7b6c8", "#1c436d"],
+  "title_color": "#e0e0e0",
+  "subtitle_color": "#e0e0e0",
+  "description": "a cool lofi drift for rainy evenings. quiet rooms, neon reflections, and gentle rhodes under a soft drizzle.",
+  "release_date": "TBD",
+  "duration": "00:24:51",
+  "tracks": [
+    {
+      "index": 1,
+      "title": "soft drizzle",
+      "duration": "2:19",
+      "timestamp": "00:00"
+    },
+    {
+      "index": 2,
+      "title": "window light",
+      "duration": "1:54",
+      "timestamp": "02:19"
+    },
+    {
+      "index": 3,
+      "title": "vinyl rain",
+      "duration": "4:15",
+      "timestamp": "04:13"
+    },
+    {
+      "index": 4,
+      "title": "afterglow neon",
+      "duration": "2:03",
+      "timestamp": "08:28"
+    },
+    {
+      "index": 5,
+      "title": "gentle rhodes",
+      "duration": "2:28",
+      "timestamp": "10:31"
+    },
+    {
+      "index": 6,
+      "title": "puddle chorus",
+      "duration": "2:16",
+      "timestamp": "12:59"
+    },
+    {
+      "index": 7,
+      "title": "street hush",
+      "duration": "2:23",
+      "timestamp": "15:15"
+    },
+    {
+      "index": 8,
+      "title": "amber umbrellas",
+      "duration": "2:10",
+      "timestamp": "17:38"
+    },
+    {
+      "index": 9,
+      "title": "late bus echo",
+      "duration": "2:44",
+      "timestamp": "19:48"
+    },
+    {
+      "index": 10,
+      "title": "quiet apartment",
+      "duration": "2:19",
+      "timestamp": "22:32"
+    }
+  ],
+  "created_with": "Suno AI Pro",
+  "mixed_with": "Audacity",
+  "license": "All rights reserved © numa.channel 2025"
+}
