@@ -4,7 +4,7 @@
   "theme": "nocturnal, city lights, vaporwave",
   "description": "a hazy lofi drift through empty streets after midnight. glowing reflections, analog warmth, and a touch of melancholy in the city night.",
   "release_date": "TBD",
-  "duration": "TBD",
+  "duration": "00:27:18",
   "colors": ["#2a1f3d", "#4a3f5e"],
   "title_color": "#d4a5ff",
   "subtitle_color": "#d4a5ff",
@@ -12,62 +12,62 @@
     {
       "index": 1,
       "title": "midnight chrome",
-      "duration": "TBD",
-      "timestamp": "TBD"
+      "duration": "2:59",
+      "timestamp": "00:00"
     },
     {
       "index": 2,
       "title": "vapor streets",
-      "duration": "TBD",
-      "timestamp": "TBD"
+      "duration": "2:26",
+      "timestamp": "02:57"
     },
     {
       "index": 3,
       "title": "lost signals",
-      "duration": "TBD",
-      "timestamp": "TBD"
+      "duration": "2:57",
+      "timestamp": "05:23"
     },
     {
       "index": 4,
       "title": "electric haze",
-      "duration": "TBD",
-      "timestamp": "TBD"
+      "duration": "2:09",
+      "timestamp": "08:19"
     },
     {
       "index": 5,
       "title": "phantom glow",
-      "duration": "TBD",
-      "timestamp": "TBD"
+      "duration": "2:20",
+      "timestamp": "10:26"
     },
     {
       "index": 6,
       "title": "city echoes",
-      "duration": "TBD",
-      "timestamp": "TBD"
+      "duration": "3:07",
+      "timestamp": "12:45"
     },
     {
       "index": 7,
       "title": "dim walkway",
-      "duration": "TBD",
-      "timestamp": "TBD"
+      "duration": "2:09",
+      "timestamp": "15:51"
     },
     {
       "index": 8,
       "title": "velvet pixels",
-      "duration": "TBD",
-      "timestamp": "TBD"
+      "duration": "2:32",
+      "timestamp": "17:59"
     },
     {
       "index": 9,
       "title": "faded neon",
-      "duration": "TBD",
-      "timestamp": "TBD"
+      "duration": "3:48",
+      "timestamp": "20:29"
     },
     {
       "index": 10,
       "title": "slow motion blur",
-      "duration": "TBD",
-      "timestamp": "TBD"
+      "duration": "3:02",
+      "timestamp": "24:16"
     }
   ],
   "created_with": "Suno AI Pro",
