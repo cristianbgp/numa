@@ -6,6 +6,8 @@ import ToolsComponent from "@/components/Tools";
 
 const searchParams = new URLSearchParams(Astro.url.search);
 const tab = searchParams.get("tab") || "artwork-generator";
+
+export const prerender = false;
 ---
 
 <Layout>
