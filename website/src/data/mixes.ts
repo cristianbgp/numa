@@ -26,6 +26,85 @@ export interface Mix {
 
 export const mixes: Mix[] = [
   {
+    "id": "numa.004",
+    "title": "blurred streets",
+    "theme": "nocturnal, quiet city, distance",
+    "description": "a distant lofi drift through blurred city lights. soft movement, gentle haze, and the feeling of walking alone at night without destination.",
+    "release_date": "TBD",
+    "duration": "TBD",
+    "colors": [
+      "#f0935a",
+      "#9b6d9f",
+      "#2c3e5e"
+    ],
+    "title_color": "#e8d4c4",
+    "subtitle_color": "#e8d4c4",
+    "tracks": [
+      {
+        "index": 1,
+        "title": "crossfade corner",
+        "duration": "TBD",
+        "timestamp": "TBD"
+      },
+      {
+        "index": 2,
+        "title": "passing glow",
+        "duration": "TBD",
+        "timestamp": "TBD"
+      },
+      {
+        "index": 3,
+        "title": "soft neon",
+        "duration": "TBD",
+        "timestamp": "TBD"
+      },
+      {
+        "index": 4,
+        "title": "window phase",
+        "duration": "TBD",
+        "timestamp": "TBD"
+      },
+      {
+        "index": 5,
+        "title": "pale traffic",
+        "duration": "TBD",
+        "timestamp": "TBD"
+      },
+      {
+        "index": 6,
+        "title": "warm concrete",
+        "duration": "TBD",
+        "timestamp": "TBD"
+      },
+      {
+        "index": 7,
+        "title": "low signal",
+        "duration": "TBD",
+        "timestamp": "TBD"
+      },
+      {
+        "index": 8,
+        "title": "tint reflection",
+        "duration": "TBD",
+        "timestamp": "TBD"
+      },
+      {
+        "index": 9,
+        "title": "avenue blur",
+        "duration": "TBD",
+        "timestamp": "TBD"
+      },
+      {
+        "index": 10,
+        "title": "quiet return",
+        "duration": "TBD",
+        "timestamp": "TBD"
+      }
+    ],
+    "created_with": "Suno AI Pro",
+    "license": "All rights reserved © numa.channel 2025"
+  },
+  {
     "id": "numa.003",
     "title": "neon dust",
     "theme": "nocturnal, city lights, vaporwave",

@@ -254,8 +254,8 @@ export default function ArtworkGenerator() {
   };
 
   const loadStyle = (style: SavedStyle) => {
-    setTitle(style.title);
-    setSubtitle(style.subtitle);
+    setTitle(style.id);
+    setSubtitle(style.title);
     setColors(style.colors);
     setTitleColor(style.titleColor);
     setSubtitleColor(style.subtitleColor);
@@ -343,7 +343,7 @@ export default function ArtworkGenerator() {
                         color: style.titleColor,
                       }}
                     >
-                      {style.title}
+                      {style.id}
                     </p>
                   </div>
                 </button>
