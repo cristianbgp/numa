@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Download, RefreshCw } from "lucide-react";
+import { mixes } from "@/data/mixes";
 
 type Ratio = "square" | "landscape";
 
@@ -23,32 +24,14 @@ type SavedStyle = {
   subtitleColor: string;
 };
 
-const SAVED_STYLES: SavedStyle[] = [
-  {
-    id: "numa.001",
-    title: "numa.001",
-    subtitle: "under the sun",
-    colors: ["#f5e6d3", "#e8d4b8"],
-    titleColor: "#2d2d2d",
-    subtitleColor: "#2d2d2d",
-  },
-  {
-    id: "numa.002",
-    title: "numa.002",
-    subtitle: "evening rain",
-    colors: ["#a7b6c8", "#1c436d"],
-    titleColor: "#e0e0e0",
-    subtitleColor: "#e0e0e0",
-  },
-  {
-    id: "numa.003",
-    title: "numa.003",
-    subtitle: "neon dust",
-    colors: ["#2a1f3d", "#4a3f5e"],
-    titleColor: "#d4a5ff",
-    subtitleColor: "#d4a5ff",
-  },
-];
+const SAVED_STYLES: SavedStyle[] = mixes.map((mix) => ({
+  id: mix.id,
+  title: mix.title,
+  subtitle: mix.description,
+  colors: mix.colors,
+  titleColor: mix.title_color,
+  subtitleColor: mix.subtitle_color,
+}));
 
 export default function ArtworkGenerator() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -63,6 +46,7 @@ export default function ArtworkGenerator() {
   const [colors, setColors] = useState<string[]>(["#f5e6d3", "#e8d4b8"]); // gradient stops
   const [grainIntensity, setGrainIntensity] = useState(0.15);
   const [letterSpacing, setLetterSpacing] = useState(40);
+  const [gradientAngle, setGradientAngle] = useState(45); // degrees
   const [ratio, setRatio] = useState<Ratio>("square");
 
   useEffect(() => {
@@ -77,6 +61,7 @@ export default function ArtworkGenerator() {
     colors,
     grainIntensity,
     letterSpacing,
+    gradientAngle,
     ratio,
   ]);
 
@@ -130,7 +115,19 @@ export default function ArtworkGenerator() {
     if (colors.length <= 1) {
       fillStyle = colors[0] ?? "#ffffff";
     } else {
-      const gradient = ctx.createLinearGradient(0, 0, width, height);
+      // Calculate gradient coordinates based on angle
+      const angleRad = (gradientAngle * Math.PI) / 180;
+      const diagonal = Math.sqrt(width * width + height * height);
+      const centerX = width / 2;
+      const centerY = height / 2;
+
+      // Calculate start and end points
+      const x1 = centerX - (Math.cos(angleRad) * diagonal) / 2;
+      const y1 = centerY - (Math.sin(angleRad) * diagonal) / 2;
+      const x2 = centerX + (Math.cos(angleRad) * diagonal) / 2;
+      const y2 = centerY + (Math.sin(angleRad) * diagonal) / 2;
+
+      const gradient = ctx.createLinearGradient(x1, y1, x2, y2);
       const step = 1 / (colors.length - 1);
       colors.forEach((c, i) => {
         gradient.addColorStop(i * step, c);
@@ -268,305 +265,317 @@ export default function ArtworkGenerator() {
   const currentRatio = RATIO_CONFIG[ratio];
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8">
-        <div className="mb-8">
-          <h1 className="text-4xl font-mono font-bold mb-2 tracking-wide">
-            numa.art
-          </h1>
-          <p className="text-muted-foreground font-mono text-sm tracking-wider">
-            Create artwork for numa.channel
-          </p>
-        </div>
+    <div className="container mx-auto px-4 py-8">
+      <div className="mb-8">
+        <h1 className="text-4xl font-mono font-bold mb-2 tracking-wide">
+          numa.art
+        </h1>
+        <p className="text-muted-foreground font-mono text-sm tracking-wider">
+          Create artwork for numa.channel
+        </p>
+      </div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
-          {/* Canvas Preview */}
-          <div className="space-y-4">
-            <div className="bg-card border border-border rounded-lg p-6">
-              <canvas
-                ref={canvasRef}
-                width={currentRatio.width}
-                height={currentRatio.height}
-                className="w-full h-auto rounded-md shadow-lg"
-              />
-            </div>
-            <div className="flex gap-2">
-              <Button
-                onClick={() => setRatio("square")}
-                variant={ratio === "square" ? "default" : "outline"}
-                className="flex-1 font-mono"
-              >
-                Cover
-                <span className="ml-2 text-xs opacity-70">3000×3000</span>
-              </Button>
-              <Button
-                onClick={() => setRatio("landscape")}
-                variant={ratio === "landscape" ? "default" : "outline"}
-                className="flex-1 font-mono"
-              >
-                YouTube
-                <span className="ml-2 text-xs opacity-70">3840×2160</span>
-              </Button>
-            </div>
-            <Button onClick={downloadImage} className="w-full" size="lg">
-              <Download className="mr-2 h-4 w-4" />
-              Download {currentRatio.label}
+      <div className="grid lg:grid-cols-2 gap-8">
+        {/* Canvas Preview */}
+        <div className="space-y-4">
+          <div className="bg-card border border-border rounded-lg p-6">
+            <canvas
+              ref={canvasRef}
+              width={currentRatio.width}
+              height={currentRatio.height}
+              className="w-full h-auto rounded-md shadow-lg"
+            />
+          </div>
+          <div className="flex gap-2">
+            <Button
+              onClick={() => setRatio("square")}
+              variant={ratio === "square" ? "default" : "outline"}
+              className="flex-1 font-mono"
+            >
+              Cover
+              <span className="ml-2 text-xs opacity-70">3000×3000</span>
+            </Button>
+            <Button
+              onClick={() => setRatio("landscape")}
+              variant={ratio === "landscape" ? "default" : "outline"}
+              className="flex-1 font-mono"
+            >
+              YouTube
+              <span className="ml-2 text-xs opacity-70">3840×2160</span>
             </Button>
           </div>
+          <Button onClick={downloadImage} className="w-full" size="lg">
+            <Download className="mr-2 h-4 w-4" />
+            Download {currentRatio.label}
+          </Button>
+        </div>
 
-          {/* Controls */}
-          <div className="space-y-6">
-            {/* Saved Styles */}
-            <div className="bg-card border border-border rounded-lg p-6">
-              <h2 className="text-xl font-mono font-semibold mb-4 tracking-wide">
-                Saved Styles
-              </h2>
-              <div className="grid grid-cols-5 gap-3">
-                {SAVED_STYLES.map((style) => (
-                  <button
-                    key={style.id}
-                    onClick={() => loadStyle(style)}
-                    className="group relative aspect-square rounded-lg overflow-hidden border-2 border-border hover:border-primary transition-all cursor-pointer"
-                  >
-                    <div
-                      className="absolute inset-0"
+        {/* Controls */}
+        <div className="space-y-6">
+          {/* Saved Styles */}
+          <div className="bg-card border border-border rounded-lg p-6">
+            <h2 className="text-xl font-mono font-semibold mb-4 tracking-wide">
+              Saved Styles
+            </h2>
+            <div className="grid grid-cols-5 gap-3">
+              {SAVED_STYLES.map((style) => (
+                <button
+                  key={style.id}
+                  onClick={() => loadStyle(style)}
+                  className="group relative aspect-square rounded-lg overflow-hidden border-2 border-border hover:border-primary transition-all cursor-pointer"
+                >
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background:
+                        style.colors.length === 1
+                          ? style.colors[0]
+                          : `linear-gradient(135deg, ${style.colors.join(
+                              ", "
+                            )})`,
+                    }}
+                  />
+                  <div className="absolute hidden lg:block inset-0 bg-black/0 group-hover:bg-black/5 transition-colors" />
+                  <div className="absolute bottom-0 left-0 right-0 p-2 bg-linear-to-t hidden lg:block">
+                    <p
+                      className="font-mono text-[10px] text-white/90 font-semibold leading-tight"
                       style={{
-                        background:
-                          style.colors.length === 1
-                            ? style.colors[0]
-                            : `linear-gradient(135deg, ${style.colors.join(
-                                ", "
-                              )})`,
+                        color: style.titleColor,
                       }}
-                    />
-                    <div className="absolute hidden lg:block inset-0 bg-black/0 group-hover:bg-black/5 transition-colors" />
-                    <div className="absolute bottom-0 left-0 right-0 p-2 bg-linear-to-t hidden lg:block">
-                      <p
-                        className="font-mono text-[10px] text-white/90 font-semibold leading-tight"
-                        style={{
-                          color: style.titleColor,
-                        }}
-                      >
-                        {style.title}
-                      </p>
-                    </div>
-                  </button>
-                ))}
-              </div>
-            </div>
-            <div className="bg-card border border-border rounded-lg p-6 space-y-6">
-              <div>
-                <h2 className="text-xl font-mono font-semibold mb-4 tracking-wide">
-                  Typography
-                </h2>
-                <div className="space-y-4">
-                  <div>
-                    <Label htmlFor="title" className="font-mono">
-                      Title
-                    </Label>
-                    <Input
-                      id="title"
-                      value={title}
-                      onChange={(e) => setTitle(e.target.value)}
-                      className="font-mono"
-                      placeholder="numa.001"
-                    />
-                    <div className="mt-3">
-                      <Label htmlFor="titleColor" className="font-mono">
-                        Title Color
-                      </Label>
-                      <div className="flex gap-2 mt-1">
-                        <Input
-                          id="titleColor"
-                          type="color"
-                          value={titleColor}
-                          onChange={(e) => setTitleColor(e.target.value)}
-                          className="w-20 h-10 p-1 cursor-pointer"
-                        />
-                        <Input
-                          value={titleColor}
-                          onChange={(e) => setTitleColor(e.target.value)}
-                          className="font-mono"
-                          placeholder="#2d2d2d"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <Label htmlFor="subtitle" className="font-mono">
-                      Subtitle
-                    </Label>
-                    <Input
-                      id="subtitle"
-                      value={subtitle}
-                      onChange={(e) => setSubtitle(e.target.value)}
-                      className="font-mono"
-                      placeholder="under the sun"
-                    />
-                    <div className="mt-3">
-                      <Label htmlFor="subtitleColor" className="font-mono">
-                        Subtitle Color
-                      </Label>
-                      <div className="flex gap-2 mt-1">
-                        <Input
-                          id="subtitleColor"
-                          type="color"
-                          value={subtitleColor}
-                          onChange={(e) => setSubtitleColor(e.target.value)}
-                          className="w-20 h-10 p-1 cursor-pointer"
-                        />
-                        <Input
-                          value={subtitleColor}
-                          onChange={(e) => setSubtitleColor(e.target.value)}
-                          className="font-mono"
-                          placeholder="#2d2d2d"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <Label htmlFor="mark" className="font-mono">
-                      Mark (optional)
-                    </Label>
-                    <Input
-                      id="mark"
-                      value={mark}
-                      onChange={(e) => setMark(e.target.value)}
-                      className="font-mono"
-                      placeholder="n."
-                    />
-                    <div className="mt-3">
-                      <Label htmlFor="markColor" className="font-mono">
-                        Mark Color
-                      </Label>
-                      <div className="flex gap-2 mt-1">
-                        <Input
-                          id="markColor"
-                          type="color"
-                          value={markColor}
-                          onChange={(e) => setMarkColor(e.target.value)}
-                          className="w-20 h-10 p-1 cursor-pointer"
-                        />
-                        <Input
-                          value={markColor}
-                          onChange={(e) => setMarkColor(e.target.value)}
-                          className="font-mono"
-                          placeholder="#2d2d2d"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <Label htmlFor="letterSpacing" className="font-mono">
-                      Letter Spacing: {letterSpacing}px
-                    </Label>
-                    <Slider
-                      id="letterSpacing"
-                      min={0}
-                      max={80}
-                      step={5}
-                      value={[letterSpacing]}
-                      onValueChange={(value) => setLetterSpacing(value[0])}
-                      className="mt-2"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-xl font-mono font-semibold tracking-wide">
-                    Colors
-                  </h2>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={randomizeColors}
-                    className="font-mono bg-transparent"
-                  >
-                    <RefreshCw className="mr-2 h-3 w-3" />
-                    Randomize
-                  </Button>
-                </div>
-                <div className="space-y-4">
-                  {colors.map((c, i) => (
-                    <div key={i}>
-                      <Label htmlFor={`color-${i}`} className="font-mono">
-                        {`Stop ${i + 1}`}
-                      </Label>
-                      <div className="flex gap-2 mt-1 items-center">
-                        <Input
-                          id={`color-${i}`}
-                          type="color"
-                          value={c}
-                          onChange={(e) => setColorAt(i, e.target.value)}
-                          className="w-20 h-10 p-1 cursor-pointer"
-                        />
-                        <Input
-                          value={c}
-                          onChange={(e) => setColorAt(i, e.target.value)}
-                          className="font-mono"
-                          placeholder="#f5e6d3"
-                        />
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="font-mono"
-                          onClick={() => removeColorStop(i)}
-                          disabled={colors.length <= 2}
-                        >
-                          Remove
-                        </Button>
-                      </div>
-                    </div>
-                  ))}
-                  <div className="flex gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="font-mono"
-                      onClick={addColorStop}
                     >
-                      Add Stop
-                    </Button>
+                      {style.title}
+                    </p>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="bg-card border border-border rounded-lg p-6 space-y-6">
+            <div>
+              <h2 className="text-xl font-mono font-semibold mb-4 tracking-wide">
+                Typography
+              </h2>
+              <div className="space-y-4">
+                <div>
+                  <Label htmlFor="title" className="font-mono">
+                    Title
+                  </Label>
+                  <Input
+                    id="title"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    className="font-mono"
+                    placeholder="numa.001"
+                  />
+                  <div className="mt-3">
+                    <Label htmlFor="titleColor" className="font-mono">
+                      Title Color
+                    </Label>
+                    <div className="flex gap-2 mt-1">
+                      <Input
+                        id="titleColor"
+                        type="color"
+                        value={titleColor}
+                        onChange={(e) => setTitleColor(e.target.value)}
+                        className="w-20 h-10 p-1 cursor-pointer"
+                      />
+                      <Input
+                        value={titleColor}
+                        onChange={(e) => setTitleColor(e.target.value)}
+                        className="font-mono"
+                        placeholder="#2d2d2d"
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-
-              <div>
-                <h2 className="text-xl font-mono font-semibold mb-4 tracking-wide">
-                  Texture
-                </h2>
                 <div>
-                  <Label htmlFor="grain" className="font-mono">
-                    Grain Intensity: {(grainIntensity * 100).toFixed(0)}%
+                  <Label htmlFor="subtitle" className="font-mono">
+                    Subtitle
+                  </Label>
+                  <Input
+                    id="subtitle"
+                    value={subtitle}
+                    onChange={(e) => setSubtitle(e.target.value)}
+                    className="font-mono"
+                    placeholder="under the sun"
+                  />
+                  <div className="mt-3">
+                    <Label htmlFor="subtitleColor" className="font-mono">
+                      Subtitle Color
+                    </Label>
+                    <div className="flex gap-2 mt-1">
+                      <Input
+                        id="subtitleColor"
+                        type="color"
+                        value={subtitleColor}
+                        onChange={(e) => setSubtitleColor(e.target.value)}
+                        className="w-20 h-10 p-1 cursor-pointer"
+                      />
+                      <Input
+                        value={subtitleColor}
+                        onChange={(e) => setSubtitleColor(e.target.value)}
+                        className="font-mono"
+                        placeholder="#2d2d2d"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <Label htmlFor="mark" className="font-mono">
+                    Mark (optional)
+                  </Label>
+                  <Input
+                    id="mark"
+                    value={mark}
+                    onChange={(e) => setMark(e.target.value)}
+                    className="font-mono"
+                    placeholder="n."
+                  />
+                  <div className="mt-3">
+                    <Label htmlFor="markColor" className="font-mono">
+                      Mark Color
+                    </Label>
+                    <div className="flex gap-2 mt-1">
+                      <Input
+                        id="markColor"
+                        type="color"
+                        value={markColor}
+                        onChange={(e) => setMarkColor(e.target.value)}
+                        className="w-20 h-10 p-1 cursor-pointer"
+                      />
+                      <Input
+                        value={markColor}
+                        onChange={(e) => setMarkColor(e.target.value)}
+                        className="font-mono"
+                        placeholder="#2d2d2d"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <Label htmlFor="letterSpacing" className="font-mono">
+                    Letter Spacing: {letterSpacing}px
                   </Label>
                   <Slider
-                    id="grain"
+                    id="letterSpacing"
                     min={0}
-                    max={0.4}
-                    step={0.01}
-                    value={[grainIntensity]}
-                    onValueChange={(value) => setGrainIntensity(value[0])}
+                    max={80}
+                    step={5}
+                    value={[letterSpacing]}
+                    onValueChange={(value) => setLetterSpacing(value[0])}
                     className="mt-2"
                   />
                 </div>
               </div>
             </div>
 
-            <div className="bg-muted/50 border border-border rounded-lg p-4">
-              <h3 className="font-mono text-sm font-semibold mb-2 tracking-wide">
-                Design Specs
-              </h3>
-              <ul className="text-xs font-mono space-y-1 text-muted-foreground">
-                <li>• Cover: 3000×3000px PNG</li>
-                <li>• YouTube: 3840×2160px PNG</li>
-                <li>• Font: Geist Mono (monospace)</li>
-                <li>• Text Color: rgba(45, 45, 45, 0.85)</li>
-                <li>• Paper-like grain texture</li>
-                <li>• Warm gradient backgrounds</li>
-              </ul>
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-xl font-mono font-semibold tracking-wide">
+                  Colors
+                </h2>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={randomizeColors}
+                  className="font-mono bg-transparent"
+                >
+                  <RefreshCw className="mr-2 h-3 w-3" />
+                  Randomize
+                </Button>
+              </div>
+              <div className="space-y-4">
+                <div>
+                  <Label htmlFor="gradientAngle" className="font-mono">
+                    Gradient Angle: {gradientAngle}°
+                  </Label>
+                  <Slider
+                    id="gradientAngle"
+                    min={0}
+                    max={360}
+                    step={15}
+                    value={[gradientAngle]}
+                    onValueChange={(value) => setGradientAngle(value[0])}
+                    className="mt-2"
+                  />
+                </div>
+                {colors.map((c, i) => (
+                  <div key={i}>
+                    <Label htmlFor={`color-${i}`} className="font-mono">
+                      {`Stop ${i + 1}`}
+                    </Label>
+                    <div className="flex gap-2 mt-1 items-center">
+                      <Input
+                        id={`color-${i}`}
+                        type="color"
+                        value={c}
+                        onChange={(e) => setColorAt(i, e.target.value)}
+                        className="w-20 h-10 p-1 cursor-pointer"
+                      />
+                      <Input
+                        value={c}
+                        onChange={(e) => setColorAt(i, e.target.value)}
+                        className="font-mono"
+                        placeholder="#f5e6d3"
+                      />
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="font-mono"
+                        onClick={() => removeColorStop(i)}
+                        disabled={colors.length <= 2}
+                      >
+                        Remove
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+                <div className="flex gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="font-mono"
+                    onClick={addColorStop}
+                  >
+                    Add Stop
+                  </Button>
+                </div>
+              </div>
             </div>
+
+            <div>
+              <h2 className="text-xl font-mono font-semibold mb-4 tracking-wide">
+                Texture
+              </h2>
+              <div>
+                <Label htmlFor="grain" className="font-mono">
+                  Grain Intensity: {(grainIntensity * 100).toFixed(0)}%
+                </Label>
+                <Slider
+                  id="grain"
+                  min={0}
+                  max={0.4}
+                  step={0.01}
+                  value={[grainIntensity]}
+                  onValueChange={(value) => setGrainIntensity(value[0])}
+                  className="mt-2"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-muted/50 border border-border rounded-lg p-4">
+            <h3 className="font-mono text-sm font-semibold mb-2 tracking-wide">
+              Design Specs
+            </h3>
+            <ul className="text-xs font-mono space-y-1 text-muted-foreground">
+              <li>• Cover: 3000×3000px PNG</li>
+              <li>• YouTube: 3840×2160px PNG</li>
+              <li>• Font: Geist Mono (monospace)</li>
+              <li>• Text Color: rgba(45, 45, 45, 0.85)</li>
+              <li>• Paper-like grain texture</li>
+              <li>• Warm gradient backgrounds</li>
+            </ul>
           </div>
         </div>
       </div>

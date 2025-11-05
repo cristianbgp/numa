@@ -18,6 +18,10 @@ mix release crossfade="2":
 video release:
   bun scripts/generate-video.ts {{release}}
 
+# Convert WebM to MP4
+webm-to-mp4 input output="":
+  bun scripts/webm-2-mp4.ts {{input}} {{output}}
+
 # Generate both mix and video for a release
 full release crossfade="2":
   @echo "🎵 Generating mix for {{release}}..."
