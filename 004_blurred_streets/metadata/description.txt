@@ -5,16 +5,16 @@ soft movement, gentle haze, and the feeling of walking alone at night without de
 
 tracklist
 
-01. crossfade corner — TBD
-02. passing glow — TBD
-03. soft neon — TBD
-04. window phase — TBD
-05. pale traffic — TBD
-06. warm concrete — TBD
-07. low signal — TBD
-08. tint reflection — TBD
-09. avenue blur — TBD
-10. quiet return — TBD
+01. crossfade corner — 00:00
+02. passing glow — 01:30
+03. soft neon — 03:50
+04. window phase — 06:20
+05. pale traffic — 08:33
+06. warm concrete — 11:26
+07. low signal — 13:41
+08. tint reflection — 15:52
+09. avenue blur — 18:15
+10. quiet return — 20:19
 
 about
 numa is a series of minimalist sound journals.

@@ -1,15 +1,15 @@
 numa.004 — blurred streets
 
-01. crossfade corner — TBD  
-02. passing glow — TBD  
-03. soft neon — TBD  
-04. window phase — TBD  
-05. pale traffic — TBD  
-06. warm concrete — TBD  
-07. low signal — TBD  
-08. tint reflection — TBD  
-09. avenue blur — TBD  
-10. quiet return — TBD
+01. crossfade corner — 1:32  
+02. passing glow — 2:21  
+03. soft neon — 2:31  
+04. window phase — 2:14  
+05. pale traffic — 2:54  
+06. warm concrete — 2:17  
+07. low signal — 2:12  
+08. tint reflection — 2:24  
+09. avenue blur — 2:06  
+10. quiet return — 1:52
 
-total duration: TBD
+total duration: 22:11
 
