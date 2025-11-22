@@ -180,7 +180,9 @@ lofi instrumental with soft vinyl texture and gentle dusty drums, mellow electri
 2. Fill `metadata/info.json` with release info (id, title, theme, colors, track list)
 3. Create `metadata/prompt.txt` with Suno AI prompt template
 4. Generate 10 tracks with Suno AI using the prompt, save as `01_track_name.wav`, `02_track_name.wav`, etc. in `tracks/`
-5. **Verify all track names are unique** across all releases
+5. **Verify all track names are unique:**
+   - Run `just check-tracks` (or `bun scripts/check-track-names.ts`)
+   - Fix any duplicates before proceeding
 6. Produce artwork via website `/tools` (artwork generator) and save to `artwork/cover.png` and `artwork/yt_background.png`
 7. Generate mix with crossfades:
    - `just mix NNN_theme-slug` (or `bun scripts/generate-mix.ts NNN_theme-slug --crossfade 2`)
@@ -209,6 +211,12 @@ lofi instrumental with soft vinyl texture and gentle dusty drums, mellow electri
 - High quality settings (CRF 18, slow preset)
 - Run: `bun scripts/webm-2-mp4.ts <input.webm> [output.mp4]` or `just webm-to-mp4 <input> [output]`
 
+**scripts/check-track-names.ts**
+- Validates that all track names are unique across all releases
+- Reports any duplicates found with their release and track index
+- Run: `bun scripts/check-track-names.ts` or `just check-tracks`
+- **Use before finalizing a new release** to ensure no naming conflicts
+
 ### Justfile commands
 Quick commands via `just`:
 - `just mix <release> [crossfade]` - Generate mix (default 2s crossfade)
@@ -216,6 +224,7 @@ Quick commands via `just`:
 - `just full <release> [crossfade]` - Generate both mix and video
 - `just sync-data` - Sync mix data to website
 - `just webm-to-mp4 <input> [output]` - Convert WebM to MP4
+- `just check-tracks` - Check all track names are unique across releases
 - `just validate <release>` - Validate release files
 - `just releases` - List all releases
 - `just info <release>` - Show release metadata

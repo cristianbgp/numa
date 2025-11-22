@@ -35,6 +35,11 @@ sync-data:
   @echo "🔄 Syncing mix data to website..."
   bun scripts/sync-mix-data.ts
 
+# Check all track names are unique across releases
+check-tracks:
+  @echo "🔍 Checking track name uniqueness..."
+  bun scripts/check-track-names.ts
+
 # List all releases
 releases:
   @echo "Available releases:"
