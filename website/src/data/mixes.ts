@@ -117,6 +117,7 @@ export const mixes: Mix[] = [
     ],
     "title_color": "#d4a5ff",
     "subtitle_color": "#d4a5ff",
+    "youtubeUrl": "https://www.youtube.com/watch?v=nvb9WlcWreY",
     "tracks": [
       {
         "index": 1,
@@ -192,6 +193,7 @@ export const mixes: Mix[] = [
     ],
     "title_color": "#e0e0e0",
     "subtitle_color": "#e0e0e0",
+    "youtubeUrl": "https://www.youtube.com/watch?v=aphDIhWN8TY",
     "description": "a cool lofi drift for rainy evenings. quiet rooms, neon reflections, and gentle rhodes under a soft drizzle.",
     "release_date": "TBD",
     "duration": "00:24:40",
