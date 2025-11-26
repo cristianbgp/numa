@@ -32,6 +32,7 @@ export const mixes: Mix[] = [
     "description": "quiet lofi for slow light and early calm. made for soft hours.",
     "release_date": "TBD",
     "duration": "00:23:09",
+    "youtubeUrl": "https://www.youtube.com/watch?v=g8eQRISoNG4",
     "colors": [
       "#f5f0e8",
       "#d4d0c8",
