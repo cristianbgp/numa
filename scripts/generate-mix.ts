@@ -46,6 +46,36 @@ async function generateMix(folderPath: string, crossfadeDuration: number = 2) {
     process.exit(1);
   }
 
+  // Verify all tracks 01-10 are present
+  const trackNumbers = new Set<number>();
+  trackFiles.forEach((file) => {
+    const filename = basename(file);
+    const match = filename.match(/^(\d+)_/);
+    if (match) {
+      const num = parseInt(match[1]!);
+      if (num >= 1 && num <= 10) {
+        trackNumbers.add(num);
+      }
+    }
+  });
+
+  const missingTracks: number[] = [];
+  for (let i = 1; i <= 10; i++) {
+    if (!trackNumbers.has(i)) {
+      missingTracks.push(i);
+    }
+  }
+
+  if (missingTracks.length > 0) {
+    console.error(`\n❌ Error: Missing required tracks:`);
+    missingTracks.forEach((num) => {
+      console.error(`   Track ${num.toString().padStart(2, "0")} is missing`);
+    });
+    console.error(`\nFound ${trackFiles.length} track(s), but need all 10 tracks (01-10)`);
+    console.error(`\nPlease ensure all tracks are present before generating the mix.`);
+    process.exit(1);
+  }
+
   // Create mix directory if it doesn't exist
   if (!existsSync(mixDir)) {
     await $`mkdir -p ${mixDir}`;

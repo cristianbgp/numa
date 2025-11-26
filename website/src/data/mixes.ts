@@ -26,6 +26,85 @@ export interface Mix {
 
 export const mixes: Mix[] = [
   {
+    "id": "numa.005",
+    "title": "pale mornings",
+    "theme": "soft light, slow calm, cold and silent morning feeling",
+    "description": "quiet lofi for slow light and early calm. made for soft hours.",
+    "release_date": "TBD",
+    "duration": "00:23:09",
+    "colors": [
+      "#f5f0e8",
+      "#d4d0c8",
+      "#b8b5d0"
+    ],
+    "title_color": "#8b8a8a",
+    "subtitle_color": "#8b8a8a",
+    "tracks": [
+      {
+        "index": 1,
+        "title": "thin sunlight",
+        "duration": "1:40",
+        "timestamp": "00:00"
+      },
+      {
+        "index": 2,
+        "title": "quiet linen",
+        "duration": "2:59",
+        "timestamp": "01:38"
+      },
+      {
+        "index": 3,
+        "title": "milk horizon",
+        "duration": "2:14",
+        "timestamp": "04:36"
+      },
+      {
+        "index": 4,
+        "title": "soft breathline",
+        "duration": "2:21",
+        "timestamp": "06:49"
+      },
+      {
+        "index": 5,
+        "title": "bleached glow",
+        "duration": "2:25",
+        "timestamp": "09:09"
+      },
+      {
+        "index": 6,
+        "title": "still fabric",
+        "duration": "2:37",
+        "timestamp": "11:33"
+      },
+      {
+        "index": 7,
+        "title": "early whisper",
+        "duration": "2:13",
+        "timestamp": "14:08"
+      },
+      {
+        "index": 8,
+        "title": "pale shimmerfield",
+        "duration": "2:19",
+        "timestamp": "16:20"
+      },
+      {
+        "index": 9,
+        "title": "dim skylayer",
+        "duration": "2:24",
+        "timestamp": "18:38"
+      },
+      {
+        "index": 10,
+        "title": "gentle dawntrace",
+        "duration": "2:09",
+        "timestamp": "21:00"
+      }
+    ],
+    "created_with": "Suno AI Pro",
+    "license": "All rights reserved © numa.channel 2025"
+  },
+  {
     "id": "numa.004",
     "title": "blurred streets",
     "theme": "nocturnal, quiet city, distance",
