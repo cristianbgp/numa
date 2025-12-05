@@ -26,6 +26,85 @@ export interface Mix {
 
 export const mixes: Mix[] = [
   {
+    "id": "numa.006",
+    "title": "quiet rooms",
+    "theme": "intimate spaces, soft interiors, gentle solitude",
+    "description": "warm lofi for quiet rooms and soft afternoon light. made for peaceful solitude.",
+    "release_date": "TBD",
+    "duration": "00:27:26",
+    "colors": [
+      "#e8ddd4",
+      "#c9b8a8",
+      "#a89b8f"
+    ],
+    "title_color": "#5a5249",
+    "subtitle_color": "#5a5249",
+    "tracks": [
+      {
+        "index": 1,
+        "title": "empty chair",
+        "duration": "2:13",
+        "timestamp": "00:00"
+      },
+      {
+        "index": 2,
+        "title": "soft corner",
+        "duration": "2:29",
+        "timestamp": "02:10"
+      },
+      {
+        "index": 3,
+        "title": "quiet shelf",
+        "duration": "2:43",
+        "timestamp": "04:38"
+      },
+      {
+        "index": 4,
+        "title": "window dust",
+        "duration": "2:58",
+        "timestamp": "07:18"
+      },
+      {
+        "index": 5,
+        "title": "still surface",
+        "duration": "2:09",
+        "timestamp": "10:14"
+      },
+      {
+        "index": 6,
+        "title": "gentle frame",
+        "duration": "2:56",
+        "timestamp": "12:21"
+      },
+      {
+        "index": 7,
+        "title": "pale woodgrain",
+        "duration": "2:41",
+        "timestamp": "15:15"
+      },
+      {
+        "index": 8,
+        "title": "quiet drawer",
+        "duration": "3:00",
+        "timestamp": "17:55"
+      },
+      {
+        "index": 9,
+        "title": "soft shadowline",
+        "duration": "1:48",
+        "timestamp": "20:52"
+      },
+      {
+        "index": 10,
+        "title": "calm threshold",
+        "duration": "2:25",
+        "timestamp": "22:38"
+      }
+    ],
+    "created_with": "Suno AI Pro",
+    "license": "All rights reserved © numa.channel 2025"
+  },
+  {
     "id": "numa.005",
     "title": "pale mornings",
     "theme": "soft light, slow calm, cold and silent morning feeling",
