@@ -30,6 +30,7 @@ export const mixes: Mix[] = [
     "title": "quiet rooms",
     "theme": "intimate spaces, soft interiors, gentle solitude",
     "description": "warm lofi for quiet rooms and soft afternoon light. made for peaceful solitude.",
+    "youtubeUrl": "https://www.youtube.com/watch?v=_r6JQTiVN6k",
     "release_date": "TBD",
     "duration": "00:27:26",
     "colors": [
