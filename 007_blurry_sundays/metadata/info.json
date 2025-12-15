@@ -4,23 +4,72 @@
   "theme": "peaceful, comforting electronic textures, lo-fi but elegant",
   "description": "peaceful lofi for slow morning light and soft haze. made for emotional clarity and gentle rhythms.",
   "release_date": "TBD",
-  "duration": "TBD",
-  "colors": ["#f4ead6", "#e4d8c4", "#d4c8b2"],
-  "title_color": "#7a7268",
-  "subtitle_color": "#7a7268",
+  "duration": "26:24",
+  "colors": ["#e5b452", "#f2c57d", "#ffedcc"],
+  "title_color": "#c76d00",
+  "subtitle_color": "#c76d00",
   "tracks": [
-    { "index": 1, "title": "blurry morning", "duration": "TBD", "timestamp": "TBD" },
-    { "index": 2, "title": "soft sunday", "duration": "TBD", "timestamp": "TBD" },
-    { "index": 3, "title": "gentle haze", "duration": "TBD", "timestamp": "TBD" },
-    { "index": 4, "title": "quiet clarity", "duration": "TBD", "timestamp": "TBD" },
-    { "index": 5, "title": "morning comfort", "duration": "TBD", "timestamp": "TBD" },
-    { "index": 6, "title": "hazy light", "duration": "TBD", "timestamp": "TBD" },
-    { "index": 7, "title": "peaceful drift", "duration": "TBD", "timestamp": "TBD" },
-    { "index": 8, "title": "soft rhythm", "duration": "TBD", "timestamp": "TBD" },
-    { "index": 9, "title": "calm blur", "duration": "TBD", "timestamp": "TBD" },
-    { "index": 10, "title": "sunday light", "duration": "TBD", "timestamp": "TBD" }
+    {
+      "index": 1,
+      "title": "blurry morning",
+      "duration": "3:05",
+      "timestamp": "00:00"
+    },
+    {
+      "index": 2,
+      "title": "soft sunday",
+      "duration": "2:29",
+      "timestamp": "03:04"
+    },
+    {
+      "index": 3,
+      "title": "gentle haze",
+      "duration": "2:31",
+      "timestamp": "05:32"
+    },
+    {
+      "index": 4,
+      "title": "quiet clarity",
+      "duration": "2:33",
+      "timestamp": "08:02"
+    },
+    {
+      "index": 5,
+      "title": "morning comfort",
+      "duration": "2:37",
+      "timestamp": "10:33"
+    },
+    {
+      "index": 6,
+      "title": "hazy light",
+      "duration": "2:33",
+      "timestamp": "13:09"
+    },
+    {
+      "index": 7,
+      "title": "peaceful drift",
+      "duration": "2:24",
+      "timestamp": "15:41"
+    },
+    {
+      "index": 8,
+      "title": "soft rhythm",
+      "duration": "2:04",
+      "timestamp": "18:04"
+    },
+    {
+      "index": 9,
+      "title": "calm blur",
+      "duration": "3:54",
+      "timestamp": "20:06"
+    },
+    {
+      "index": 10,
+      "title": "sunday light",
+      "duration": "2:25",
+      "timestamp": "23:59"
+    }
   ],
   "created_with": "Suno AI Pro",
   "license": "All rights reserved © numa.channel 2025"
 }
-

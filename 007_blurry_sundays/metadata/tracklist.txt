@@ -1,15 +1,15 @@
 numa.007 — blurry sundays
 
-01. blurry morning — TBD  
-02. soft sunday — TBD  
-03. gentle haze — TBD  
-04. quiet clarity — TBD  
-05. morning comfort — TBD  
-06. hazy light — TBD  
-07. peaceful drift — TBD  
-08. soft rhythm — TBD  
-09. calm blur — TBD  
-10. sunday light — TBD
+01. blurry morning — 3:05  
+02. soft sunday — 2:29  
+03. gentle haze — 2:31  
+04. quiet clarity — 2:33  
+05. morning comfort — 2:37  
+06. hazy light — 2:33  
+07. peaceful drift — 2:24  
+08. soft rhythm — 2:04  
+09. calm blur — 3:54  
+10. sunday light — 2:25
 
-total duration: TBD
+total duration: 26:24
 

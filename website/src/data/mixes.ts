@@ -26,6 +26,85 @@ export interface Mix {
 
 export const mixes: Mix[] = [
   {
+    "id": "numa.007",
+    "title": "blurry sundays",
+    "theme": "peaceful, comforting electronic textures, lo-fi but elegant",
+    "description": "peaceful lofi for slow morning light and soft haze. made for emotional clarity and gentle rhythms.",
+    "release_date": "TBD",
+    "duration": "TBD",
+    "colors": [
+      "#e5b452",
+      "#f2c57d",
+      "#ffedcc"
+    ],
+    "title_color": "#c76d00",
+    "subtitle_color": "#c76d00",
+    "tracks": [
+      {
+        "index": 1,
+        "title": "blurry morning",
+        "duration": "TBD",
+        "timestamp": "TBD"
+      },
+      {
+        "index": 2,
+        "title": "soft sunday",
+        "duration": "TBD",
+        "timestamp": "TBD"
+      },
+      {
+        "index": 3,
+        "title": "gentle haze",
+        "duration": "TBD",
+        "timestamp": "TBD"
+      },
+      {
+        "index": 4,
+        "title": "quiet clarity",
+        "duration": "TBD",
+        "timestamp": "TBD"
+      },
+      {
+        "index": 5,
+        "title": "morning comfort",
+        "duration": "TBD",
+        "timestamp": "TBD"
+      },
+      {
+        "index": 6,
+        "title": "hazy light",
+        "duration": "TBD",
+        "timestamp": "TBD"
+      },
+      {
+        "index": 7,
+        "title": "peaceful drift",
+        "duration": "TBD",
+        "timestamp": "TBD"
+      },
+      {
+        "index": 8,
+        "title": "soft rhythm",
+        "duration": "TBD",
+        "timestamp": "TBD"
+      },
+      {
+        "index": 9,
+        "title": "calm blur",
+        "duration": "TBD",
+        "timestamp": "TBD"
+      },
+      {
+        "index": 10,
+        "title": "sunday light",
+        "duration": "TBD",
+        "timestamp": "TBD"
+      }
+    ],
+    "created_with": "Suno AI Pro",
+    "license": "All rights reserved © numa.channel 2025"
+  },
+  {
     "id": "numa.006",
     "title": "quiet rooms",
     "theme": "intimate spaces, soft interiors, gentle solitude",

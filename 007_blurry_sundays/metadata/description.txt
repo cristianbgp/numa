@@ -5,16 +5,16 @@ made for emotional clarity and gentle rhythms.
 
 tracklist
 
-01. blurry morning — TBD
-02. soft sunday — TBD
-03. gentle haze — TBD
-04. quiet clarity — TBD
-05. morning comfort — TBD
-06. hazy light — TBD
-07. peaceful drift — TBD
-08. soft rhythm — TBD
-09. calm blur — TBD
-10. sunday light — TBD
+01. blurry morning — 00:00
+02. soft sunday — 03:04
+03. gentle haze — 05:32
+04. quiet clarity — 08:02
+05. morning comfort — 10:33
+06. hazy light — 13:09
+07. peaceful drift — 15:41
+08. soft rhythm — 18:04
+09. calm blur — 20:06
+10. sunday light — 23:59
 
 about
 numa is a series of minimalist sound journals.
