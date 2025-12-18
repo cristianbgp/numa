@@ -5,10 +5,11 @@
   "description": "a hazy lofi drift through empty streets after midnight. glowing reflections, analog warmth, and a touch of melancholy in the city night.",
   "release_date": "TBD",
   "duration": "00:27:18",
+  "music_url": "https://mixes.numa.channel/mixes/numa.003-neon_dust.mp3",
   "colors": ["#2a1f3d", "#4a3f5e"],
   "title_color": "#d4a5ff",
   "subtitle_color": "#d4a5ff",
-  "youtubeUrl": "https://www.youtube.com/watch?v=nvb9WlcWreY",
+  "youtube_url": "https://www.youtube.com/watch?v=nvb9WlcWreY",
   "tracks": [
     {
       "index": 1,

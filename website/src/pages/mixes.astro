@@ -6,12 +6,12 @@ import Container from "@/layouts/container.astro";
 
 // Transform mix data for MixCard component
 const releasedMixes = mixData
-  .filter((mix) => Boolean(mix.youtubeUrl))
+  .filter((mix) => Boolean(mix.youtube_url))
   .map((mix) => ({
     number: mix.id,
     title: mix.title,
     description: mix.description,
-    youtubeUrl: mix.youtubeUrl,
+    youtube_url: mix.youtube_url,
     colors: mix.colors,
     titleColor: mix.title_color,
   }));

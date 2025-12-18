@@ -5,10 +5,11 @@
   "description": "a warm lofi journey for slow summer days. sounds for still moments, drifting light, and quiet warmth.",
   "release_date": "TBD",
   "duration": "00:20:23",
+  "music_url": "https://mixes.numa.channel/mixes/numa.001-under_the_sun.mp3",
   "colors": ["#f5e6d3", "#e8d4b8"],
   "title_color": "#2d2d2d",
   "subtitle_color": "#2d2d2d",
-  "youtubeUrl": "https://www.youtube.com/watch?v=7rvox0fYgyY",
+  "youtube_url": "https://www.youtube.com/watch?v=7rvox0fYgyY",
   "tracks": [
     {
       "index": 1,

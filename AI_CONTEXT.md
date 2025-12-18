@@ -63,7 +63,7 @@ Example from `001_under_the_sun`:
   "description": "a warm lofi journey for slow summer days. sounds for still moments, drifting light, and quiet warmth.",
   "release_date": "TBD",
   "duration": "00:20:23",
-  "youtubeUrl": "https://www.youtube.com/watch?v=...",
+  "youtube_url": "https://www.youtube.com/watch?v=...",
   "colors": ["#f5e6d3", "#e8d4b8"],
   "title_color": "#2d2d2d",
   "subtitle_color": "#2d2d2d",
@@ -79,7 +79,7 @@ Example from `001_under_the_sun`:
 **Fields:**
 - `colors`: Array of hex strings for gradient background (supports 1+ colors for multi-stop gradients)
 - `title_color` and `subtitle_color`: Hex strings for text colors in artwork
-- `youtubeUrl`: Optional YouTube link (used by website)
+- `youtube_url`: Optional YouTube link (used by website)
 - `duration`: Total mix duration in `HH:MM:SS` format
 - `tracks`: Array with `index`, `title`, `duration` (MM:SS), and `timestamp` (HH:MM:SS)
 - Timestamps are calculated with 2-second crossfade + 1.00516 adjustment ratio

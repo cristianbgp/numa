@@ -73,7 +73,7 @@ Three pre-built gradient classes in `src/styles/global.css`:
      number: "numa.XXX",
      title: "mix name",
      description: "description here",
-     youtubeUrl: "https://www.youtube.com/watch?v=YOUR_VIDEO_ID",
+     youtube_url: "https://www.youtube.com/watch?v=YOUR_VIDEO_ID",
      coverGradient: "gradient-sunset" // or "gradient-evening" or custom class
    }
    ```

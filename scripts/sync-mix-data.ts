@@ -24,6 +24,8 @@ interface MixMetadata {
   description: string;
   release_date: string;
   duration: string;
+  music_url?: string;
+  youtube_url?: string;
   colors: string[];
   title_color: string;
   subtitle_color: string;
@@ -90,10 +92,11 @@ export interface Mix {
   colors: string[];
   title_color: string;
   subtitle_color: string;
+  youtube_url?: string;
   tracks: Track[];
   created_with: string;
   license: string;
-  youtubeUrl?: string;
+  music_url?: string;
 }
 
 export const mixes: Mix[] = ${JSON.stringify(mixes, null, 2)};

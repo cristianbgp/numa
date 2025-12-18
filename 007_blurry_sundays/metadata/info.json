@@ -5,9 +5,11 @@
   "description": "peaceful lofi for slow morning light and soft haze. made for emotional clarity and gentle rhythms.",
   "release_date": "TBD",
   "duration": "26:24",
+  "music_url": "https://mixes.numa.channel/mixes/numa.007-blurry_sundays.mp3",
   "colors": ["#e5b452", "#f2c57d", "#ffedcc"],
   "title_color": "#c76d00",
   "subtitle_color": "#c76d00",
+  "youtube_url": "https://www.youtube.com/watch?v=M2uLK5VkQBI",
   "tracks": [
     {
       "index": 1,

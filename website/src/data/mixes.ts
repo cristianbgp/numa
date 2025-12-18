@@ -18,10 +18,11 @@ export interface Mix {
   colors: string[];
   title_color: string;
   subtitle_color: string;
+  youtube_url?: string;
   tracks: Track[];
   created_with: string;
   license: string;
-  youtubeUrl?: string;
+  music_url?: string;
 }
 
 export const mixes: Mix[] = [
@@ -31,7 +32,8 @@ export const mixes: Mix[] = [
     "theme": "peaceful, comforting electronic textures, lo-fi but elegant",
     "description": "peaceful lofi for slow morning light and soft haze. made for emotional clarity and gentle rhythms.",
     "release_date": "TBD",
-    "duration": "TBD",
+    "duration": "26:24",
+    "music_url": "https://mixes.numa.channel/mixes/numa.007-blurry_sundays.mp3",
     "colors": [
       "#e5b452",
       "#f2c57d",
@@ -39,66 +41,67 @@ export const mixes: Mix[] = [
     ],
     "title_color": "#c76d00",
     "subtitle_color": "#c76d00",
+    "youtube_url": "https://www.youtube.com/watch?v=M2uLK5VkQBI",
     "tracks": [
       {
         "index": 1,
         "title": "blurry morning",
-        "duration": "TBD",
-        "timestamp": "TBD"
+        "duration": "3:05",
+        "timestamp": "00:00"
       },
       {
         "index": 2,
         "title": "soft sunday",
-        "duration": "TBD",
-        "timestamp": "TBD"
+        "duration": "2:29",
+        "timestamp": "03:04"
       },
       {
         "index": 3,
         "title": "gentle haze",
-        "duration": "TBD",
-        "timestamp": "TBD"
+        "duration": "2:31",
+        "timestamp": "05:32"
       },
       {
         "index": 4,
         "title": "quiet clarity",
-        "duration": "TBD",
-        "timestamp": "TBD"
+        "duration": "2:33",
+        "timestamp": "08:02"
       },
       {
         "index": 5,
         "title": "morning comfort",
-        "duration": "TBD",
-        "timestamp": "TBD"
+        "duration": "2:37",
+        "timestamp": "10:33"
       },
       {
         "index": 6,
         "title": "hazy light",
-        "duration": "TBD",
-        "timestamp": "TBD"
+        "duration": "2:33",
+        "timestamp": "13:09"
       },
       {
         "index": 7,
         "title": "peaceful drift",
-        "duration": "TBD",
-        "timestamp": "TBD"
+        "duration": "2:24",
+        "timestamp": "15:41"
       },
       {
         "index": 8,
         "title": "soft rhythm",
-        "duration": "TBD",
-        "timestamp": "TBD"
+        "duration": "2:04",
+        "timestamp": "18:04"
       },
       {
         "index": 9,
         "title": "calm blur",
-        "duration": "TBD",
-        "timestamp": "TBD"
+        "duration": "3:54",
+        "timestamp": "20:06"
       },
       {
         "index": 10,
         "title": "sunday light",
-        "duration": "TBD",
-        "timestamp": "TBD"
+        "duration": "2:25",
+        "timestamp": "23:59"
       }
     ],
     "created_with": "Suno AI Pro",
@@ -109,9 +112,10 @@ export const mixes: Mix[] = [
     "title": "quiet rooms",
     "theme": "intimate spaces, soft interiors, gentle solitude",
     "description": "warm lofi for quiet rooms and soft afternoon light. made for peaceful solitude.",
-    "youtubeUrl": "https://www.youtube.com/watch?v=_r6JQTiVN6k",
+    "youtube_url": "https://www.youtube.com/watch?v=_r6JQTiVN6k",
     "release_date": "TBD",
     "duration": "00:27:26",
+    "music_url": "https://mixes.numa.channel/mixes/numa.006-quiet_rooms.mp3",
     "colors": [
       "#e8ddd4",
       "#c9b8a8",
@@ -191,7 +195,8 @@ export const mixes: Mix[] = [
     "description": "quiet lofi for slow light and early calm. made for soft hours.",
     "release_date": "TBD",
     "duration": "00:23:09",
-    "youtubeUrl": "https://www.youtube.com/watch?v=g8eQRISoNG4",
+    "music_url": "https://mixes.numa.channel/mixes/numa.005-pale_mornings.mp3",
+    "youtube_url": "https://www.youtube.com/watch?v=g8eQRISoNG4",
     "colors": [
       "#f5f0e8",
       "#d4d0c8",
@@ -271,7 +276,8 @@ export const mixes: Mix[] = [
     "description": "a distant lofi drift through blurred city lights. soft movement, gentle haze, and the feeling of walking alone at night without destination.",
     "release_date": "TBD",
     "duration": "00:22:11",
-    "youtubeUrl": "https://www.youtube.com/watch?v=0jgP2SxCnyg",
+    "music_url": "https://mixes.numa.channel/mixes/numa.004-blurred_streets.mp3",
+    "youtube_url": "https://www.youtube.com/watch?v=0jgP2SxCnyg",
     "colors": [
       "#f0935a",
       "#9b6d9f",
@@ -351,13 +357,14 @@ export const mixes: Mix[] = [
     "description": "a hazy lofi drift through empty streets after midnight. glowing reflections, analog warmth, and a touch of melancholy in the city night.",
     "release_date": "TBD",
     "duration": "00:27:18",
+    "music_url": "https://mixes.numa.channel/mixes/numa.003-neon_dust.mp3",
     "colors": [
       "#2a1f3d",
       "#4a3f5e"
     ],
     "title_color": "#d4a5ff",
     "subtitle_color": "#d4a5ff",
-    "youtubeUrl": "https://www.youtube.com/watch?v=nvb9WlcWreY",
+    "youtube_url": "https://www.youtube.com/watch?v=nvb9WlcWreY",
     "tracks": [
       {
         "index": 1,
@@ -433,10 +440,11 @@ export const mixes: Mix[] = [
     ],
     "title_color": "#e0e0e0",
     "subtitle_color": "#e0e0e0",
-    "youtubeUrl": "https://www.youtube.com/watch?v=aphDIhWN8TY",
+    "youtube_url": "https://www.youtube.com/watch?v=aphDIhWN8TY",
     "description": "a cool lofi drift for rainy evenings. quiet rooms, neon reflections, and gentle rhodes under a soft drizzle.",
     "release_date": "TBD",
     "duration": "00:24:40",
+    "music_url": "https://mixes.numa.channel/mixes/numa.002-evening_rain.mp3",
     "tracks": [
       {
         "index": 1,
@@ -509,13 +517,14 @@ export const mixes: Mix[] = [
     "description": "a warm lofi journey for slow summer days. sounds for still moments, drifting light, and quiet warmth.",
     "release_date": "TBD",
     "duration": "00:20:23",
+    "music_url": "https://mixes.numa.channel/mixes/numa.001-under_the_sun.mp3",
     "colors": [
       "#f5e6d3",
       "#e8d4b8"
     ],
     "title_color": "#2d2d2d",
     "subtitle_color": "#2d2d2d",
-    "youtubeUrl": "https://www.youtube.com/watch?v=7rvox0fYgyY",
+    "youtube_url": "https://www.youtube.com/watch?v=7rvox0fYgyY",
     "tracks": [
       {
         "index": 1,
