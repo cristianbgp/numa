@@ -27,6 +27,87 @@ export interface Mix {
 
 export const mixes: Mix[] = [
   {
+    "id": "numa.008",
+    "title": "quiet before",
+    "theme": "collective pause, stillness, anticipation",
+    "description": "a quiet pause before something begins. made for still moments and soft light.",
+    "release_date": "TBD",
+    "duration": "29:33",
+    "music_url": "https://mixes.numa.channel/mixes/numa.008-quiet_before.mp3",
+    "youtube_url": "https://www.youtube.com/watch?v=ebrPyEg6n9w",
+    "colors": [
+      "#1a3d0e",
+      "#6b1f2a",
+      "#f5e6d3"
+    ],
+    "title_color": "#e8d4b8",
+    "subtitle_color": "#e8d4b8",
+    "tracks": [
+      {
+        "index": 1,
+        "title": "lower voices",
+        "duration": "3:01",
+        "timestamp": "0:00"
+      },
+      {
+        "index": 2,
+        "title": "still desks",
+        "duration": "2:52",
+        "timestamp": "2:59"
+      },
+      {
+        "index": 3,
+        "title": "dim corridors",
+        "duration": "1:29",
+        "timestamp": "5:49"
+      },
+      {
+        "index": 4,
+        "title": "paused clocks",
+        "duration": "4:12",
+        "timestamp": "7:16"
+      },
+      {
+        "index": 5,
+        "title": "soft departure",
+        "duration": "2:57",
+        "timestamp": "11:26"
+      },
+      {
+        "index": 6,
+        "title": "early closure",
+        "duration": "3:26",
+        "timestamp": "14:21"
+      },
+      {
+        "index": 7,
+        "title": "faint rooms",
+        "duration": "2:37",
+        "timestamp": "17:45"
+      },
+      {
+        "index": 8,
+        "title": "warm standby",
+        "duration": "3:03",
+        "timestamp": "20:20"
+      },
+      {
+        "index": 9,
+        "title": "half-lit halls",
+        "duration": "2:26",
+        "timestamp": "23:21"
+      },
+      {
+        "index": 10,
+        "title": "before again",
+        "duration": "3:48",
+        "timestamp": "25:45"
+      }
+    ],
+    "created_with": "Suno AI Pro",
+    "license": "All rights reserved © numa.channel 2025"
+  },
+  {
     "id": "numa.007",
     "title": "blurry sundays",
     "theme": "peaceful, comforting electronic textures, lo-fi but elegant",
