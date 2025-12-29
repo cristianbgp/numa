@@ -1,0 +1,79 @@
+{
+  "id": "numa.009",
+  "title": "empty calendar",
+  "theme": "time reset, open space, unmarked days",
+  "description": "time reset without ceremony. days ahead, unmarked. made for open space and quiet planning.",
+  "release_date": "TBD",
+  "duration": "24:12",
+  "music_url": "https://mixes.numa.channel/mixes/numa.009-empty_calendar.mp3",
+  "youtube_url": "https://www.youtube.com/watch?v=QV24zp6nGO4",
+  "colors": ["#f8f8f8", "#e8e8e8", "#c1d6e7"],
+  "title_color": "#707070",
+  "subtitle_color": "#707070",
+  "tracks": [
+    {
+      "index": 1,
+      "title": "blank dates",
+      "duration": "2:24",
+      "timestamp": "0:00"
+    },
+    {
+      "index": 2,
+      "title": "open squares",
+      "duration": "2:28",
+      "timestamp": "2:22"
+    },
+    {
+      "index": 3,
+      "title": "unmarked days",
+      "duration": "2:19",
+      "timestamp": "4:48"
+    },
+    {
+      "index": 4,
+      "title": "clean margins",
+      "duration": "2:14",
+      "timestamp": "7:05"
+    },
+    {
+      "index": 5,
+      "title": "idle weeks",
+      "duration": "3:02",
+      "timestamp": "9:17"
+    },
+    {
+      "index": 6,
+      "title": "soft planning",
+      "duration": "2:39",
+      "timestamp": "12:17"
+    },
+    {
+      "index": 7,
+      "title": "first notation",
+      "duration": "2:33",
+      "timestamp": "14:56"
+    },
+    {
+      "index": 8,
+      "title": "light penciled",
+      "duration": "2:22",
+      "timestamp": "17:27"
+    },
+    {
+      "index": 9,
+      "title": "free columns",
+      "duration": "2:35",
+      "timestamp": "19:47"
+    },
+    {
+      "index": 10,
+      "title": "time held",
+      "duration": "1:52",
+      "timestamp": "22:20"
+    }
+  ],
+  "created_with": "Suno AI Pro",
+  "license": "All rights reserved © numa.channel 2025"
+}
+
+
