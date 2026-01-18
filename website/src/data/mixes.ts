@@ -27,6 +27,168 @@ export interface Mix {
 
 export const mixes: Mix[] = [
   {
+    "id": "numa.011",
+    "title": "eased focus",
+    "theme": "attention without effort, focus that feels natural, work and calm aligned",
+    "description": "attention without strain. made for steady work and clear thoughts.",
+    "release_date": "TBD",
+    "duration": "TBD",
+    "music_url": "https://mixes.numa.channel/mixes/numa.011-eased_focus.mp3",
+    "youtube_url": "",
+    "colors": [
+      "#f5e6d3",
+      "#e8e8e8",
+      "#c1d6e7"
+    ],
+    "title_color": "#707070",
+    "subtitle_color": "#707070",
+    "tracks": [
+      {
+        "index": 1,
+        "title": "settled attention",
+        "duration": "TBD",
+        "timestamp": "TBD"
+      },
+      {
+        "index": 2,
+        "title": "quiet alignment",
+        "duration": "TBD",
+        "timestamp": "TBD"
+      },
+      {
+        "index": 3,
+        "title": "natural flow",
+        "duration": "TBD",
+        "timestamp": "TBD"
+      },
+      {
+        "index": 4,
+        "title": "clear posture",
+        "duration": "TBD",
+        "timestamp": "TBD"
+      },
+      {
+        "index": 5,
+        "title": "soft intention",
+        "duration": "TBD",
+        "timestamp": "TBD"
+      },
+      {
+        "index": 6,
+        "title": "gentle tracking",
+        "duration": "TBD",
+        "timestamp": "TBD"
+      },
+      {
+        "index": 7,
+        "title": "balanced effort",
+        "duration": "TBD",
+        "timestamp": "TBD"
+      },
+      {
+        "index": 8,
+        "title": "even weight",
+        "duration": "TBD",
+        "timestamp": "TBD"
+      },
+      {
+        "index": 9,
+        "title": "unforced pace",
+        "duration": "TBD",
+        "timestamp": "TBD"
+      },
+      {
+        "index": 10,
+        "title": "still momentum",
+        "duration": "TBD",
+        "timestamp": "TBD"
+      }
+    ],
+    "created_with": "Suno AI Pro",
+    "license": "All rights reserved © numa.channel 2025"
+  },
+  {
+    "id": "numa.010",
+    "title": "low drive",
+    "theme": "sustained effort, quiet motivation, movement powered quietly",
+    "description": "quiet effort, sustained. made for focus without urgency.",
+    "release_date": "TBD",
+    "duration": "31:06",
+    "music_url": "https://mixes.numa.channel/mixes/numa.010-low_drive.mp3",
+    "youtube_url": "",
+    "colors": [
+      "#9a9a9a",
+      "#8b7a6b",
+      "#5a5a5a"
+    ],
+    "title_color": "#3a3a3a",
+    "subtitle_color": "#3a3a3a",
+    "tracks": [
+      {
+        "index": 1,
+        "title": "slow ignition",
+        "duration": "2:55",
+        "timestamp": "0:00"
+      },
+      {
+        "index": 2,
+        "title": "baseline effort",
+        "duration": "5:12",
+        "timestamp": "2:53"
+      },
+      {
+        "index": 3,
+        "title": "held tension",
+        "duration": "2:50",
+        "timestamp": "8:03"
+      },
+      {
+        "index": 4,
+        "title": "muted push",
+        "duration": "2:06",
+        "timestamp": "10:51"
+      },
+      {
+        "index": 5,
+        "title": "steady pull",
+        "duration": "2:51",
+        "timestamp": "12:55"
+      },
+      {
+        "index": 6,
+        "title": "undercurrent",
+        "duration": "3:08",
+        "timestamp": "15:45"
+      },
+      {
+        "index": 7,
+        "title": "quiet torque",
+        "duration": "2:44",
+        "timestamp": "18:51"
+      },
+      {
+        "index": 8,
+        "title": "measured pace",
+        "duration": "3:30",
+        "timestamp": "21:33"
+      },
+      {
+        "index": 9,
+        "title": "soft resistance",
+        "duration": "2:52",
+        "timestamp": "25:01"
+      },
+      {
+        "index": 10,
+        "title": "forward weight",
+        "duration": "3:15",
+        "timestamp": "27:51"
+      }
+    ],
+    "created_with": "Suno AI Pro",
+    "license": "All rights reserved © numa.channel 2025"
+  },
+  {
     "id": "numa.009",
     "title": "empty calendar",
     "theme": "time reset, open space, unmarked days",
