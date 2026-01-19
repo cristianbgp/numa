@@ -1,14 +1,14 @@
 numa.011 - eased focus
 
-01. settled attention — TBD  
-02. quiet alignment — TBD  
-03. natural flow — TBD  
-04. clear posture — TBD  
-05. soft intention — TBD  
-06. gentle tracking — TBD  
-07. balanced effort — TBD  
-08. even weight — TBD  
-09. unforced pace — TBD  
-10. still momentum — TBD
+01. settled attention — 2:15  
+02. quiet alignment — 2:50  
+03. natural flow — 1:57  
+04. clear posture — 2:42  
+05. soft intention — 2:21  
+06. gentle tracking — 2:42  
+07. balanced effort — 2:19  
+08. even weight — 2:24  
+09. unforced pace — 3:08  
+10. still momentum — 2:08
 
-total duration: TBD
+total duration: 24:28
