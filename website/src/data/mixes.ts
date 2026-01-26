@@ -27,6 +27,87 @@ export interface Mix {
 
 export const mixes: Mix[] = [
   {
+    "id": "numa.012",
+    "title": "open air",
+    "theme": "more space, less weight, attention loosens, sound breathes, nothing pushed forward",
+    "description": "space to breathe. made for quiet clarity and light focus.",
+    "release_date": "TBD",
+    "duration": "27:33",
+    "music_url": "https://mixes.numa.channel/mixes/numa.012-open_air.mp3",
+    "youtube_url": "",
+    "colors": [
+      "#d0eafb",
+      "#f5f5f5",
+      "#e0e0e0"
+    ],
+    "title_color": "#7a8a9a",
+    "subtitle_color": "#7a8a9a",
+    "tracks": [
+      {
+        "index": 1,
+        "title": "wide intervals",
+        "duration": "3:21",
+        "timestamp": "0:00"
+      },
+      {
+        "index": 2,
+        "title": "loosened grip",
+        "duration": "2:43",
+        "timestamp": "3:19"
+      },
+      {
+        "index": 3,
+        "title": "clear spacing",
+        "duration": "2:44",
+        "timestamp": "6:00"
+      },
+      {
+        "index": 4,
+        "title": "thin horizons",
+        "duration": "2:54",
+        "timestamp": "8:43"
+      },
+      {
+        "index": 5,
+        "title": "air between",
+        "duration": "2:09",
+        "timestamp": "11:35"
+      },
+      {
+        "index": 6,
+        "title": "light distance",
+        "duration": "2:43",
+        "timestamp": "13:42"
+      },
+      {
+        "index": 7,
+        "title": "soft altitude",
+        "duration": "3:16",
+        "timestamp": "16:23"
+      },
+      {
+        "index": 8,
+        "title": "open field",
+        "duration": "2:46",
+        "timestamp": "19:37"
+      },
+      {
+        "index": 9,
+        "title": "drift line",
+        "duration": "2:26",
+        "timestamp": "22:20"
+      },
+      {
+        "index": 10,
+        "title": "quiet span",
+        "duration": "2:49",
+        "timestamp": "24:44"
+      }
+    ],
+    "created_with": "Suno AI Pro",
+    "license": "All rights reserved © numa.channel 2025"
+  },
+  {
     "id": "numa.011",
     "title": "eased focus",
     "theme": "attention without effort, focus that feels natural, work and calm aligned",
