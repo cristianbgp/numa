@@ -13,6 +13,7 @@ export default function MobileMenu({ currentPath }: MobileMenuProps) {
     { href: "/", label: "home" },
     { href: "/mixes", label: "mixes" },
     { href: "/about", label: "about" },
+    { href: "/tools", label: "tools" },
     { href: "/support", label: "support" },
   ];
 

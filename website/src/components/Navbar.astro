@@ -45,6 +45,15 @@ const currentPath = Astro.url.pathname;
         about
       </a>
       <a
+        href="/tools"
+        class:list={[
+          "hover:opacity-70 transition-opacity",
+          currentPath === "/tools" && "opacity-50",
+        ]}
+      >
+        tools
+      </a>
+      <a
         href="/support"
         class:list={[
           "hover:opacity-70 transition-opacity",
