@@ -89,6 +89,7 @@ async function main() {
     const expectedName = `${dir}_mix.mp3`;
     const chosenFile =
       mp3Files.find((f) => f === expectedName) ?? mp3Files[0];
+    if (!chosenFile) continue;
 
     const srcPath = join(mixDir, chosenFile);
 

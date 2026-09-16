@@ -22,6 +22,10 @@ video release:
 webm-to-mp4 input output="":
   bun scripts/webm-2-mp4.ts {{input}} {{output}}
 
+# Export all mix MP3s to a directory (default: all_mixes_mp3)
+export-mp3 output="all_mixes_mp3":
+  bun scripts/export-mix-mp3.ts {{output}}
+
 # Generate both mix and video for a release
 full release crossfade="2":
   @echo "🎵 Generating mix for {{release}}..."

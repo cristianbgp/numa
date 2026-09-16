@@ -34,7 +34,7 @@ export const mixes: Mix[] = [
     "release_date": "TBD",
     "duration": "27:33",
     "music_url": "https://mixes.numa.channel/mixes/numa.012-open_air.mp3",
-    "youtube_url": "",
+    "youtube_url": "https://www.youtube.com/watch?v=i4oB-bytMVQ",
     "colors": [
       "#d0eafb",
       "#f5f5f5",
@@ -115,7 +115,7 @@ export const mixes: Mix[] = [
     "release_date": "TBD",
     "duration": "24:28",
     "music_url": "https://mixes.numa.channel/mixes/numa.011-eased_focus.mp3",
-    "youtube_url": "",
+    "youtube_url": "https://www.youtube.com/watch?v=ahmscP_s_ks",
     "colors": [
       "#f5e6d3",
       "#e8e8e8",
@@ -196,7 +196,7 @@ export const mixes: Mix[] = [
     "release_date": "TBD",
     "duration": "31:06",
     "music_url": "https://mixes.numa.channel/mixes/numa.010-low_drive.mp3",
-    "youtube_url": "",
+    "youtube_url": "https://www.youtube.com/watch?v=6dOk5vmXL4w",
     "colors": [
       "#9a9a9a",
       "#8b7a6b",
