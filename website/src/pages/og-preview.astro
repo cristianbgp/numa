@@ -1,0 +1,75 @@
+---
+export const prerender = true;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>numa OG preview</title>
+  </head>
+  <body>
+    <main class="og-card" data-og-card>
+      <div class="identity">
+        <div class="mark">n.</div>
+        <div class="channel">numa.channel</div>
+      </div>
+    </main>
+  </body>
+</html>
+
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html),
+  :global(body) {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    background: #f7f6f4;
+  }
+
+  :global(body) {
+    display: grid;
+    place-items: start center;
+  }
+
+  .og-card {
+    position: relative;
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    color: #292929;
+    background:
+      radial-gradient(circle at 18% 16%, rgb(210 208 204 / 72%), transparent 48%),
+      linear-gradient(118deg, #deddda 0%, #eeece8 42%, #faf9f6 100%);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+      "Liberation Mono", "Courier New", monospace;
+  }
+
+  .identity {
+    position: absolute;
+    top: 50%;
+    left: 150px;
+    transform: translateY(-50%);
+  }
+
+  .mark {
+    font-size: 112px;
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.08em;
+  }
+
+  .channel {
+    margin-top: 28px;
+    font-size: 30px;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.08em;
+  }
+</style>

@@ -195,6 +195,19 @@ public gallery at <http://localhost:4321/how-it-sounds/gallery>. Gallery pages
 come from `GET /v1/how-it-sounds`. The API stores public metadata and rate
 limits in PostgreSQL while keeping development MP3s in `api/storage/`.
 
+The social preview is rendered from the real `/og-preview` page with the same
+system monospace stack used by Tailwind's `font-mono`. Regenerate
+`website/public/og/numa.png` after editing that page:
+
+```sh
+cd website
+bunx playwright install chromium # first run only
+bun run render:og
+```
+
+The page uses a `1200 × 630` CSS canvas and Playwright captures it at 2× for a
+sharper `2400 × 1260` social image.
+
 In Cloudflare Pages, set `PUBLIC_API_URL` to the Railway API origin. In
 Railway, set `ALLOWED_ORIGIN` to the public website origin. Production audio
 is stored in Cloudflare R2 and served from its public custom domain; the

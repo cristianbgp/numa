@@ -1,8 +1,26 @@
 ---
 import "../styles/global.css";
 import Navbar from "@/components/Navbar.astro";
+import { createPageMetadata } from "@/lib/metadata";
 import { ClientRouter, fade } from "astro:transitions";
-const { title = "numa.channel" } = Astro.props;
+
+type Props = {
+  title?: string;
+  description?: string;
+  image?: string;
+};
+
+const {
+  title = "numa.channel",
+  description,
+  image,
+} = Astro.props;
+const metadata = createPageMetadata({
+  pathname: Astro.url.pathname,
+  title,
+  description,
+  image,
+});
 ---
 
 <html lang="en" transition:animate="none">
@@ -10,17 +28,23 @@ const { title = "numa.channel" } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap"
-      rel="stylesheet"
-    />
-    <title>{title}</title>
-    <meta
-      name="description"
-      content="numa is a series of minimalist sound journals. each mix captures a single feeling, a moment in time. created for calm spaces and unhurried hours."
-    />
+    <title>{metadata.title}</title>
+    <meta name="description" content={metadata.description} />
+    <link rel="canonical" href={metadata.canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="numa.channel" />
+    <meta property="og:title" content={metadata.title} />
+    <meta property="og:description" content={metadata.description} />
+    <meta property="og:url" content={metadata.canonicalUrl} />
+    <meta property="og:image" content={metadata.imageUrl} />
+    <meta property="og:image:width" content="2400" />
+    <meta property="og:image:height" content="1260" />
+    <meta property="og:image:alt" content="numa.channel" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={metadata.title} />
+    <meta name="twitter:description" content={metadata.description} />
+    <meta name="twitter:image" content={metadata.imageUrl} />
+    <meta name="twitter:image:alt" content="numa.channel" />
     <ClientRouter fallback="swap" />
   </head>
   <body class="noise-overlay">
