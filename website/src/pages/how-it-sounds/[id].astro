@@ -9,7 +9,7 @@ const apiBaseUrl = import.meta.env.PUBLIC_API_URL || "http://localhost:3000";
 const { id } = Astro.params;
 ---
 
-<Layout title="how it sounds — numa">
+<Layout title="how it sounds | numa">
   <Container>
     <HowItSoundsExperience client:load apiBaseUrl={apiBaseUrl} initialId={id} />
   </Container>

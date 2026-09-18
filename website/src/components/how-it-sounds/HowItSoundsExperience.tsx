@@ -221,7 +221,7 @@ function ResultView({
     try {
       if (navigator.share) {
         await navigator.share({
-          title: "how it sounds — numa",
+          title: "how it sounds | numa",
           text: result.thought,
           url,
         });
