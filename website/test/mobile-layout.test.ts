@@ -72,6 +72,27 @@ describe("browser behavior", () => {
     await page.close();
   });
 
+  test("home leads with the interactive sound experience", async () => {
+    const page = await browser.newPage();
+    await page.goto(BASE_URL, { waitUntil: "networkidle" });
+
+    const callsToAction = page.locator("main a");
+    expect(
+      await callsToAction.evaluateAll((links) =>
+        links.map((link) => link.textContent?.trim()),
+      ),
+    ).toEqual([
+      "turn a thought into sound →",
+      "explore all mixes →",
+      "watch on YouTube →",
+    ]);
+    expect(await callsToAction.first().getAttribute("href")).toBe(
+      "/how-it-sounds",
+    );
+
+    await page.close();
+  });
+
   test("generation errors shake unless reduced motion is requested", async () => {
     async function errorAnimation(reducedMotion: "no-preference" | "reduce") {
       const page = await browser.newPage();
