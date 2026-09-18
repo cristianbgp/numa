@@ -25,15 +25,15 @@ const tools = [
 
 export default function ToolsComponent({ tab }: { tab: string }) {
   return (
-    <div>
-      <Tabs defaultValue={tab}>
-        <TabsList>
+    <div className="min-w-0">
+      <Tabs defaultValue={tab} className="min-w-0">
+        <TabsList className="h-auto w-full max-w-full flex-wrap justify-start">
           {tools.map((tool) =>
             "href" in tool ? (
               <TabsTrigger
                 key={tool.id}
                 value={tool.id}
-                className="cursor-pointer"
+                className="flex-none cursor-pointer"
                 asChild
               >
                 <a href={tool.href}>{tool.title}</a>
@@ -42,7 +42,7 @@ export default function ToolsComponent({ tab }: { tab: string }) {
               <TabsTrigger
                 key={tool.id}
                 value={tool.id}
-                className="cursor-pointer"
+                className="flex-none cursor-pointer"
                 onClick={() => {
                   window.history.pushState({}, "", `/tools?tab=${tool.id}`);
                 }}
@@ -54,7 +54,7 @@ export default function ToolsComponent({ tab }: { tab: string }) {
         </TabsList>
         {tools.map((tool) =>
           "component" in tool ? (
-            <TabsContent key={tool.id} value={tool.id}>
+            <TabsContent key={tool.id} value={tool.id} className="min-w-0">
               {tool.component}
             </TabsContent>
           ) : null,

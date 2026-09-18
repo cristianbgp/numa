@@ -10,6 +10,7 @@ import {
 } from "react";
 import {
   computeWaveformBins,
+  createWaveformLayout,
   createHowItSoundsApi,
   downloadFilename,
   type PublicSoundResult,
@@ -96,19 +97,20 @@ function WaveformPlayer({ result }: { result: PublicSoundResult }) {
     context.scale(ratio, ratio);
     context.clearRect(0, 0, width, height);
 
-    const gap = 2;
-    const barWidth = Math.max(
-      1,
-      (width - gap * (bins.length - 1)) / bins.length,
-    );
+    const layout = createWaveformLayout(bins, width);
     const progress = duration > 0 ? currentTime / duration : 0;
     const playedUntil = progress * width;
 
-    bins.forEach((bin, index) => {
-      const x = index * (barWidth + gap);
+    layout.bins.forEach((bin, index) => {
+      const x = index * (layout.barWidth + layout.gap);
       const barHeight = Math.max(2, bin * 62);
       context.fillStyle = x <= playedUntil ? "#171717" : "#d7d7d4";
-      context.fillRect(x, (height - barHeight) / 2, barWidth, barHeight);
+      context.fillRect(
+        x,
+        (height - barHeight) / 2,
+        layout.barWidth,
+        barHeight,
+      );
     });
 
     if (progress > 0) {

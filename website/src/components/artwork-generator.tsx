@@ -275,10 +275,10 @@ export default function ArtworkGenerator() {
         </p>
       </div>
 
-      <div className="grid lg:grid-cols-2 gap-8">
+      <div className="grid min-w-0 gap-8 lg:grid-cols-2">
         {/* Canvas Preview */}
-        <div className="space-y-4">
-          <div className="bg-card border border-border rounded-lg p-6">
+        <div className="min-w-0 space-y-4">
+          <div className="bg-card min-w-0 rounded-lg border border-border p-4 sm:p-6">
             <canvas
               ref={canvasRef}
               width={currentRatio.width}
@@ -286,11 +286,11 @@ export default function ArtworkGenerator() {
               className="w-full h-auto rounded-md shadow-lg"
             />
           </div>
-          <div className="flex gap-2">
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
             <Button
               onClick={() => setRatio("square")}
               variant={ratio === "square" ? "default" : "outline"}
-              className="flex-1 font-mono"
+              className="w-full min-w-0 font-mono"
             >
               Cover
               <span className="ml-2 text-xs opacity-70">3000×3000</span>
@@ -298,20 +298,24 @@ export default function ArtworkGenerator() {
             <Button
               onClick={() => setRatio("landscape")}
               variant={ratio === "landscape" ? "default" : "outline"}
-              className="flex-1 font-mono"
+              className="w-full min-w-0 font-mono"
             >
               YouTube
               <span className="ml-2 text-xs opacity-70">3840×2160</span>
             </Button>
           </div>
-          <Button onClick={downloadImage} className="w-full" size="lg">
+          <Button
+            onClick={downloadImage}
+            className="h-auto min-h-10 w-full min-w-0 whitespace-normal text-center"
+            size="lg"
+          >
             <Download className="mr-2 h-4 w-4" />
             Download {currentRatio.label}
           </Button>
         </div>
 
         {/* Controls */}
-        <div className="space-y-6">
+        <div className="min-w-0 space-y-6">
           {/* Saved Styles */}
           <div className="bg-card border border-border rounded-lg p-6">
             <h2 className="text-xl font-mono font-semibold mb-4 tracking-wide">
