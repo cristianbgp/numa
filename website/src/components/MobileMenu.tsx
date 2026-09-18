@@ -14,7 +14,7 @@ export default function MobileMenu({ currentPath }: MobileMenuProps) {
     { href: "/mixes", label: "mixes" },
     { href: "/about", label: "about" },
     { href: "/tools", label: "tools" },
-    { href: "/support", label: "support" },
+    { href: "/how-it-sounds", label: "how it sounds" },
   ];
 
   return (
@@ -34,7 +34,11 @@ export default function MobileMenu({ currentPath }: MobileMenuProps) {
               key={link.href}
               href={link.href}
               className={`text-lg hover:opacity-70 transition-opacity ${
-                currentPath === link.href ? "opacity-50" : ""
+                (link.href === "/"
+                  ? currentPath === link.href
+                  : currentPath.startsWith(link.href))
+                  ? "opacity-50"
+                  : ""
               }`}
               onClick={() => setOpen(false)}
             >
@@ -46,4 +50,3 @@ export default function MobileMenu({ currentPath }: MobileMenuProps) {
     </Sheet>
   );
 }
-

@@ -29,3 +29,7 @@ dist-ssr
 *.mp3
 *.aup3
 *.webm
+
+docs/superpowers/
+
+.superpowers/

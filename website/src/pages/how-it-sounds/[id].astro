@@ -1,0 +1,16 @@
+---
+import HowItSoundsExperience from "@/components/how-it-sounds/HowItSoundsExperience";
+import Container from "@/layouts/container.astro";
+import Layout from "@/layouts/main.astro";
+
+export const prerender = false;
+
+const apiBaseUrl = import.meta.env.PUBLIC_API_URL || "http://localhost:3000";
+const { id } = Astro.params;
+---
+
+<Layout title="how it sounds — numa">
+  <Container>
+    <HowItSoundsExperience client:load apiBaseUrl={apiBaseUrl} initialId={id} />
+  </Container>
+</Layout>

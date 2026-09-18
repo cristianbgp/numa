@@ -111,6 +111,10 @@
 }
 
 @layer base {
+  html {
+    scrollbar-gutter: stable;
+  }
+
   * {
     @apply border-border outline-ring/50;
   }
@@ -157,5 +161,117 @@
     opacity: 0.03;
     z-index: -1;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+}
+
+@layer components {
+  .sound-orb {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .sound-orb__glow {
+    position: absolute;
+    inset: -20%;
+    border-radius: 9999px;
+    pointer-events: none;
+    animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }
+
+  .sound-orb__glow--primary {
+    background: var(--orb-primary-background);
+    animation-name: sound-orb-primary-drift;
+    animation-duration: var(--orb-primary-duration);
+    animation-delay: var(--orb-primary-delay);
+  }
+
+  .sound-orb__glow--secondary {
+    background: var(--orb-secondary-background);
+    animation-name: sound-orb-secondary-drift;
+    animation-duration: var(--orb-secondary-duration);
+    animation-delay: var(--orb-secondary-delay);
+  }
+}
+
+@keyframes sound-orb-primary-drift {
+  0% {
+    opacity: 0.5;
+    transform: translate3d(-12%, -10%, 0) scale(1.02);
+  }
+
+  48% {
+    opacity: 0.98;
+    transform: translate3d(7%, 9%, 0) scale(1.22);
+  }
+
+  100% {
+    opacity: 0.64;
+    transform: translate3d(var(--orb-drift-x), var(--orb-drift-y), 0)
+      scale(1.1);
+  }
+}
+
+@keyframes sound-orb-secondary-drift {
+  0% {
+    opacity: 0.3;
+    transform: translate3d(12%, -13%, 0) scale(1.2);
+  }
+
+  56% {
+    opacity: 0.86;
+    transform: translate3d(-8%, 10%, 0) scale(1.01);
+  }
+
+  100% {
+    opacity: 0.44;
+    transform: translate3d(var(--orb-secondary-x), var(--orb-secondary-y), 0)
+      scale(1.18);
+  }
+}
+
+.sound-loading__orb {
+  animation: sound-loading-breathe 3.2s cubic-bezier(0.645, 0.045, 0.355, 1)
+    infinite alternate;
+}
+
+@keyframes sound-loading-breathe {
+  from {
+    opacity: 0.82;
+    transform: scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sound-orb {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .sound-loading__orb {
+    animation: none;
+    opacity: 1;
+    transform: none !important;
+  }
+
+  .sound-orb__glow {
+    animation: none;
+  }
+
+  .sound-orb__glow--primary {
+    opacity: 0.84;
+    transform: translate3d(0, 0, 0) scale(1.06);
+  }
+
+  .sound-orb__glow--secondary {
+    opacity: 0.62;
+    transform: translate3d(0, 0, 0) scale(1.05);
   }
 }

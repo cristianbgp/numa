@@ -15,6 +15,7 @@ This repository contains the complete production workflow for numa:
   rendered videos.
 - `scripts/` contains Bun scripts for audio, video, validation, and data sync.
 - `website/` contains the Astro website and its artwork generator.
+- `api/` contains the Bun and Hono service for How It Sounds.
 - `justfile` provides the common project commands.
 
 ```text
@@ -26,6 +27,7 @@ This repository contains the complete production workflow for numa:
 │   ├── tracks/
 │   └── videos/
 ├── assets/
+├── api/
 ├── scripts/
 ├── website/
 └── justfile
@@ -39,6 +41,7 @@ scripts, artwork, and website source are tracked.
 - [Bun](https://bun.sh/)
 - [just](https://github.com/casey/just)
 - [ffmpeg](https://ffmpeg.org/)
+- [PostgreSQL](https://postgresapp.com/) for the local How It Sounds API
 - [asdf](https://asdf-vm.com/) when matching the Cloudflare Node runtime
 
 The repository pins Node in `.tool-versions`. Install that version without
@@ -175,27 +178,53 @@ bun run build
 bun run preview
 ```
 
-Current routes include the home page, mixes, about, the artwork tools, and the
-generated data endpoint. The artwork generator reads the same synced release
-data as the public mixes page.
+Current routes include the home page, mixes, about, How It Sounds, its public
+sound gallery, the artwork tools, and the generated data endpoint. The artwork
+generator reads the same synced release data as the public mixes page.
+
+For local How It Sounds development, run the API in another terminal and set
+the public browser URL if it differs from the default:
+
+```sh
+cd api && bun run dev
+cd website && PUBLIC_API_URL=http://localhost:3000 bun run dev
+```
+
+The generator is available at <http://localhost:4321/how-it-sounds> and the
+public gallery at <http://localhost:4321/how-it-sounds/gallery>. Gallery pages
+come from `GET /v1/how-it-sounds`. The API stores public metadata and rate
+limits in PostgreSQL while keeping development MP3s in `api/storage/`.
+
+In Cloudflare Pages, set `PUBLIC_API_URL` to the Railway API origin. In
+Railway, set `ALLOWED_ORIGIN` to the public website origin. Production audio
+is stored in Cloudflare R2 and served from its public custom domain; the
+Railway API requires no persistent volume.
 
 ### Cloudflare Pages
 
 The Pages project uses:
 
 - Root directory: `website`
-- Build command: the package’s `build` script (`bun run build` locally)
+- Build command: `bun install --frozen-lockfile && bun run build`
 - Build output directory: `dist`
 - Wrangler configuration: `website/wrangler.jsonc`
-- Node version: the repository-level `.tool-versions` pin
+- Build variables: `SKIP_DEPENDENCY_INSTALL=1`, `NODE_VERSION=22.16.0`,
+  `BUN_VERSION=1.4.2`, and `PUBLIC_API_URL=https://api.numa.channel`
 
 The Wrangler configuration uses `pages_build_output_dir` and preserves the
-Cloudflare compatibility flags required by the Astro adapter.
+Cloudflare compatibility flags required by the Astro adapter. Numa does not use
+Astro sessions; the project selects Astro's in-memory session driver so the
+adapter does not require a persistent `SESSION` KV binding. Do not store
+application data in Astro sessions without revisiting this configuration.
+
+The production API is served from `https://api.numa.channel`, generated audio
+from `https://media.numa.channel`, and the public website from
+`https://numa.channel`.
 
 ## Visual direction
 
 - Warm, restrained gradients with subtle paper-like grain
-- Geist Mono typography
+- IBM Plex Mono typography
 - A small `n.` mark
 - Calm, minimal copy written in lowercase
 - Square artwork at 3000 × 3000 and YouTube artwork at 3840 × 2160

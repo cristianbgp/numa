@@ -1,10 +1,11 @@
 ---
 import "../styles/global.css";
 import Navbar from "@/components/Navbar.astro";
+import { ClientRouter, fade } from "astro:transitions";
 const { title = "numa.channel" } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="en" transition:animate="none">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -17,10 +18,14 @@ const { title = "numa.channel" } = Astro.props;
     />
     <title>{title}</title>
 	<meta name="description" content="numa is a series of minimalist sound journals. each mix captures a single feeling — a moment in time. created for calm spaces and unhurried hours." />
+    <ClientRouter fallback="swap" />
   </head>
   <body class="noise-overlay">
     <Navbar />
-    <main class="mt-[53px]">
+    <main
+      class="mt-[53px]"
+      transition:animate={fade({ duration: "160ms" })}
+    >
       <slot />
     </main>
   </body>

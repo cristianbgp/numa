@@ -15,6 +15,12 @@ const tools = [
     description: "Create animated gradient backgrounds for your website",
     component: <GradientAnimator />,
   },
+  {
+    id: "how-it-sounds",
+    title: "How It Sounds",
+    description: "Turn a thought into a public sound journal",
+    href: "/how-it-sounds",
+  },
 ];
 
 export default function ToolsComponent({ tab }: { tab: string }) {
@@ -22,24 +28,37 @@ export default function ToolsComponent({ tab }: { tab: string }) {
     <div>
       <Tabs defaultValue={tab}>
         <TabsList>
-          {tools.map((tool) => (
-            <TabsTrigger
-              key={tool.id}
-              value={tool.id}
-              className="cursor-pointer"
-              onClick={() => {
-                window.history.pushState({}, "", `/tools?tab=${tool.id}`);
-              }}
-            >
-              {tool.title}
-            </TabsTrigger>
-          ))}
+          {tools.map((tool) =>
+            "href" in tool ? (
+              <TabsTrigger
+                key={tool.id}
+                value={tool.id}
+                className="cursor-pointer"
+                asChild
+              >
+                <a href={tool.href}>{tool.title}</a>
+              </TabsTrigger>
+            ) : (
+              <TabsTrigger
+                key={tool.id}
+                value={tool.id}
+                className="cursor-pointer"
+                onClick={() => {
+                  window.history.pushState({}, "", `/tools?tab=${tool.id}`);
+                }}
+              >
+                {tool.title}
+              </TabsTrigger>
+            ),
+          )}
         </TabsList>
-        {tools.map((tool) => (
-          <TabsContent key={tool.id} value={tool.id}>
-            {tool.component}
-          </TabsContent>
-        ))}
+        {tools.map((tool) =>
+          "component" in tool ? (
+            <TabsContent key={tool.id} value={tool.id}>
+              {tool.component}
+            </TabsContent>
+          ) : null,
+        )}
       </Tabs>
     </div>
   );

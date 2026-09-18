@@ -1,5 +1,13 @@
-<div class="py-20 px-6">
-  <div class="max-w-5xl mx-auto">
-    <slot />
-  </div>
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div
+  class:list={["mx-auto w-full max-w-5xl px-6 lg:px-0", className]}
+>
+  <slot />
 </div>
