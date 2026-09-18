@@ -17,58 +17,63 @@ describe("Numa music identity", () => {
 
     expect(prompt).toContain("“Quiet room—after rain!”");
     expect(prompt).toContain(
-      "Let the thought determine the emotional center, intensity, tension, tempo, rhythm, harmony, dynamics, density, register, and use of silence.",
+      "Interpret the emotional meaning, tension, memory, or atmosphere behind the thought.",
     );
     expect(prompt).toContain(
-      "Interpret its emotional meaning rather than illustrating literal words or objects.",
+      "Do not merely illustrate its literal words.",
     );
   });
 
-  test("keeps bright emotions sincere instead of playful or cartoonish", () => {
+  test("requires a distinct musical brief for each thought", () => {
     const prompt = buildNumaPrompt("Quiet room—after rain!");
 
     expect(prompt).toContain(
-      "Treat the emotion with sincerity, maturity, and psychological nuance.",
+      "commit to a clear musical brief: an emotional center, a genre or musical language, a deliberate tempo or absence of pulse, a small instrumental palette, and a distinct production character or acoustic space.",
     );
     expect(prompt).toContain(
-      "A bright or joyful thought may feel open, luminous, or alive, but never cute, goofy, chirpy, whimsical, or cartoonish.",
+      "Let the thought determine every choice.",
     );
   });
 
-  test("frames the result as a coherent underscore instead of a jingle", () => {
+  test("does not default every thought to the same ambient palette", () => {
     const prompt = buildNumaPrompt("Quiet room—after rain!");
 
     expect(prompt).toContain(
-      "Compose it as a concise contemporary underscore—not a song, jingle, advertisement, trailer cue, or novelty track.",
+      "Do not fall back automatically to ambient pads, soft piano, or a generic lo-fi beat.",
     );
     expect(prompt).toContain(
-      "Choose one coherent sonic world and only the instruments needed to express this specific thought.",
+      "The production may be acoustic, electronic, or hybrid",
     );
     expect(prompt).toContain(
-      "Acoustic, electronic, or hybrid production are all possible, but the timbres should feel grounded, intentional, and emotionally credible.",
+      "intimate, intentional, uncluttered, and emotionally credible.",
     );
   });
 
-  test("rejects catchy melodies, bouncy grooves, and novelty timbres", () => {
+  test("gives the short generation a compact arrangement and ending", () => {
     const prompt = buildNumaPrompt("Quiet room—after rain!");
 
     expect(prompt).toContain(
-      "If a melody appears, keep it fragmentary and emotionally suggestive rather than catchy, sing-song, or hook-driven.",
-    );
-    expect(prompt).toContain(
-      "Avoid bouncy or jaunty grooves, nursery-rhyme contours, comic pizzicato, chirpy mallets, toy-like sounds, novelty percussion, ukulele-style cheerfulness, handclap-driven pop, stock-advertising gestures, exaggerated cinematic swells, and generic feel-good resolutions.",
+      "establish its world immediately, introduce one meaningful emotional movement or change, and leave enough time for a deliberate ending or natural decay.",
     );
   });
 
-  test("keeps the Numa frame concise, instrumental, and deliberate", () => {
+  test("keeps the emotional language mature without overprescribing style", () => {
     const prompt = buildNumaPrompt("Quiet room—after rain!");
 
     expect(prompt).toContain(
-      "Give the miniature one clear emotional movement or turn and a deliberate ending.",
+      "Melody, rhythm, harmony, texture, silence, and dynamics should serve the thought.",
     );
     expect(prompt).toContain(
-      "Numa is the frame: intimate, intentional, uncluttered, human-scaled, and emotionally honest.",
+      "Avoid cute, comic, novelty, advertising, trailer, or nursery-rhyme language.",
     );
+    expect(prompt).toContain(
+      "Bright emotions may feel open and alive, but should remain sincere and mature.",
+    );
+  });
+
+  test("keeps the result instrumental and prevents an abrupt cutoff", () => {
+    const prompt = buildNumaPrompt("Quiet room—after rain!");
+
     expect(prompt).toContain("Instrumental only. No speech or singing.");
     expect(prompt).toContain("No abrupt cutoff.");
   });

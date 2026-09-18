@@ -16,19 +16,15 @@ export function buildNumaPrompt(thought: string): string {
   return `Create a distinct 12-second instrumental miniature that translates the emotional world inside this thought:
 “${trimmedThought}”
 
-Let the thought determine the emotional center, intensity, tension, tempo, rhythm, harmony, dynamics, density, register, and use of silence. Interpret its emotional meaning rather than illustrating literal words or objects.
+Interpret the emotional meaning, tension, memory, or atmosphere behind the thought. Do not merely illustrate its literal words.
 
-Treat the emotion with sincerity, maturity, and psychological nuance. A bright or joyful thought may feel open, luminous, or alive, but never cute, goofy, chirpy, whimsical, or cartoonish.
+For this specific thought, commit to a clear musical brief: an emotional center, a genre or musical language, a deliberate tempo or absence of pulse, a small instrumental palette, and a distinct production character or acoustic space. Let the thought determine every choice. Do not fall back automatically to ambient pads, soft piano, or a generic lo-fi beat.
 
-Compose it as a concise contemporary underscore—not a song, jingle, advertisement, trailer cue, or novelty track. Choose one coherent sonic world and only the instruments needed to express this specific thought. Acoustic, electronic, or hybrid production are all possible, but the timbres should feel grounded, intentional, and emotionally credible.
+Use only the sounds needed to express this moment. The production may be acoustic, electronic, or hybrid, but it should feel intimate, intentional, uncluttered, and emotionally credible.
 
-Favor nuanced harmony, natural phrasing, subtle rhythmic motion, textural detail, and meaningful restraint. If a melody appears, keep it fragmentary and emotionally suggestive rather than catchy, sing-song, or hook-driven.
+Give the miniature a compact arrangement: establish its world immediately, introduce one meaningful emotional movement or change, and leave enough time for a deliberate ending or natural decay.
 
-Avoid bouncy or jaunty grooves, nursery-rhyme contours, comic pizzicato, chirpy mallets, toy-like sounds, novelty percussion, ukulele-style cheerfulness, handclap-driven pop, stock-advertising gestures, exaggerated cinematic swells, and generic feel-good resolutions.
-
-Give the miniature one clear emotional movement or turn and a deliberate ending.
-
-Numa is the frame: intimate, intentional, uncluttered, human-scaled, and emotionally honest.
+Melody, rhythm, harmony, texture, silence, and dynamics should serve the thought. Avoid cute, comic, novelty, advertising, trailer, or nursery-rhyme language. Bright emotions may feel open and alive, but should remain sincere and mature.
 
 Instrumental only. No speech or singing.
 No abrupt cutoff.`;
