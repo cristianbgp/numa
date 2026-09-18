@@ -5,6 +5,8 @@
   "compatibility_date": "2025-11-05",
   "compatibility_flags": [
     "nodejs_compat",
+    // Astro SSR otherwise returns an AsyncIterable that Pages stringifies.
+    "disable_nodejs_process_v2",
     "global_fetch_strictly_public"
   ]
 }
