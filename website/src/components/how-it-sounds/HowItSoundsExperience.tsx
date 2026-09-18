@@ -451,7 +451,10 @@ export default function HowItSoundsExperience({
               />
 
               {view.name === "error" && (
-                <p className="mt-4 text-sm text-neutral-600" role="alert">
+                <p
+                  className="generation-error mt-4 text-sm text-neutral-600"
+                  role="alert"
+                >
                   {view.message}
                 </p>
               )}

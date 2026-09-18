@@ -1,11 +1,5 @@
 import { ArrowUpRight, Pause, Play } from "lucide-react";
-import {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   appendUniqueResults,
   createHowItSoundsApi,
@@ -42,16 +36,18 @@ export function SoundCard({
   return (
     <article className="group flex min-w-0 flex-col border-t border-neutral-200 pt-5">
       <div className="relative mx-auto w-full max-w-[15rem] p-4 sm:p-5">
-        <a
-          href={resultPath(result.id)}
-          aria-label={`Open sound: ${result.thought}`}
-          className="block rounded-full focus-visible:outline-2 focus-visible:outline-offset-4"
+        <button
+          type="button"
+          onClick={() => onToggle(result)}
+          aria-label={`${active && playing ? "Pause" : "Play"} sound: ${result.thought}`}
+          title={active && playing ? "Pause" : "Play"}
+          className="group/orb block w-full cursor-pointer rounded-full focus-visible:outline-2 focus-visible:outline-offset-4"
         >
           <SoundOrb
             id={result.id}
-            className="aspect-square w-full transition-transform duration-200 ease-out group-hover:scale-[1.02] group-active:scale-[0.98]"
+            className="aspect-square w-full transition-transform duration-200 ease-out group-hover/orb:scale-[1.02] group-active/orb:scale-[0.98]"
           />
-        </a>
+        </button>
         <button
           type="button"
           onClick={() => onToggle(result)}
@@ -60,9 +56,9 @@ export function SoundCard({
           title={active && playing ? "Pause" : "Play"}
         >
           {active && playing ? (
-            <Pause size={14} aria-hidden="true" />
+            <Pause size={14} />
           ) : (
-            <Play size={14} className="ml-px" aria-hidden="true" />
+            <Play size={14} className="ml-px" />
           )}
         </button>
       </div>
@@ -79,7 +75,9 @@ export function SoundCard({
             open sound <ArrowUpRight size={11} aria-hidden="true" />
           </span>
         </a>
-        {date && <time className="mt-3 text-[10px] text-neutral-400">{date}</time>}
+        {date && (
+          <time className="mt-3 text-[10px] text-neutral-400">{date}</time>
+        )}
         {active && playbackError && (
           <p className="mt-3 text-[11px] text-neutral-600" role="status">
             {playbackError}
@@ -250,7 +248,9 @@ export default function SoundGallery({ apiBaseUrl }: Props) {
               </button>
             )}
             {!nextCursor && !error && (
-              <p className="text-[11px] text-neutral-400">you have reached the quiet beginning</p>
+              <p className="text-[11px] text-neutral-400">
+                you have reached the quiet beginning
+              </p>
             )}
             {error && (
               <button

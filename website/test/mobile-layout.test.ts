@@ -22,7 +22,7 @@ async function waitForServer() {
   throw new Error("Astro dev server did not become ready");
 }
 
-describe("mobile layout", () => {
+describe("browser behavior", () => {
   beforeAll(async () => {
     server = Bun.spawn(
       [
@@ -70,5 +70,53 @@ describe("mobile layout", () => {
     expect(widths.document).toBeLessThanOrEqual(widths.viewport);
     expect(widths.tabs?.content).toBeLessThanOrEqual(widths.tabs?.client ?? 0);
     await page.close();
+  });
+
+  test("generation errors shake unless reduced motion is requested", async () => {
+    async function errorAnimation(reducedMotion: "no-preference" | "reduce") {
+      const page = await browser.newPage();
+      await page.emulateMedia({ reducedMotion });
+      await page.route("http://localhost:3000/**", async (route) => {
+        const headers = {
+          "access-control-allow-headers": "content-type",
+          "access-control-allow-methods": "POST, OPTIONS",
+          "access-control-allow-origin": "*",
+        };
+
+        if (route.request().method() === "OPTIONS") {
+          await route.fulfill({ status: 204, headers });
+          return;
+        }
+
+        await route.fulfill({
+          status: 500,
+          headers: { ...headers, "content-type": "application/json" },
+          body: JSON.stringify({
+            error: {
+              code: "generation_failed",
+              message: "Something went quiet. Please try again.",
+            },
+          }),
+        });
+      });
+      await page.goto(`${BASE_URL}/how-it-sounds`, {
+        waitUntil: "networkidle",
+      });
+      await page
+        .getByLabel("what is on your mind?")
+        .fill("Rain against the window");
+      await page.getByRole("button", { name: "hear it →" }).click();
+
+      const animationName = await page
+        .getByRole("alert")
+        .evaluate((element) => getComputedStyle(element).animationName);
+      await page.close();
+      return animationName;
+    }
+
+    expect(await errorAnimation("no-preference")).toBe(
+      "generation-error-shake",
+    );
+    expect(await errorAnimation("reduce")).toBe("generation-error-fade");
   });
 });
