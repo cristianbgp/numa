@@ -2,7 +2,6 @@ import { describe, expect, test } from "bun:test";
 import {
   appendUniqueResults,
   apiUrl,
-  createWaveformLayout,
   createHowItSoundsApi,
   computeWaveformBins,
   downloadFilename,
@@ -67,19 +66,6 @@ describe("How It Sounds frontend helpers", () => {
 
   test("returns silent bins for an empty channel", () => {
     expect(computeWaveformBins(new Float32Array(), 4)).toEqual([0, 0, 0, 0]);
-  });
-
-  test("fits the complete waveform inside a narrow mobile player", () => {
-    const bins = Array.from({ length: 160 }, (_, index) => index);
-
-    const layout = createWaveformLayout(bins, 193);
-    const lastBarRight =
-      (layout.bins.length - 1) * (layout.barWidth + layout.gap) +
-      layout.barWidth;
-
-    expect(layout.bins).toHaveLength(65);
-    expect(layout.bins.at(-1)).toBe(159);
-    expect(lastBarRight).toBeLessThanOrEqual(193);
   });
 
   test("generates and reads public results", async () => {

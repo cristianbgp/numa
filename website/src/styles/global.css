@@ -254,12 +254,12 @@
 @keyframes sound-loading-breathe {
   from {
     opacity: 0.82;
-    transform: scale(0.94);
+    transform: scale(0.56);
   }
 
   to {
     opacity: 1;
-    transform: scale(1.03);
+    transform: scale(1.05);
   }
 }
 

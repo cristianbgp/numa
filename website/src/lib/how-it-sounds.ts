@@ -57,44 +57,6 @@ export function computeWaveformBins(
   return maximum === 0 ? bins : bins.map((bin) => bin / maximum);
 }
 
-export type WaveformLayout = {
-  bins: number[];
-  barWidth: number;
-  gap: number;
-};
-
-export function createWaveformLayout(
-  bins: number[],
-  width: number,
-  gap = 2,
-  minimumBarWidth = 1,
-): WaveformLayout {
-  if (bins.length === 0 || width <= 0) {
-    return { bins: [], barWidth: 0, gap };
-  }
-
-  const capacity = Math.max(
-    1,
-    Math.floor((width + gap) / (minimumBarWidth + gap)),
-  );
-  const count = Math.min(bins.length, capacity);
-  const fittedBins = Array.from({ length: count }, (_, index) => {
-    const start = Math.floor((index * bins.length) / count);
-    const end = Math.max(
-      start + 1,
-      Math.floor(((index + 1) * bins.length) / count),
-    );
-
-    return Math.max(...bins.slice(start, end));
-  });
-
-  return {
-    bins: fittedBins,
-    barWidth: (width - gap * (count - 1)) / count,
-    gap,
-  };
-}
-
 export type PublicSoundResult = {
   id: string;
   thought: string;

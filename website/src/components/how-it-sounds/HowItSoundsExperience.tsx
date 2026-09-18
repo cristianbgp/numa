@@ -10,7 +10,6 @@ import {
 } from "react";
 import {
   computeWaveformBins,
-  createWaveformLayout,
   createHowItSoundsApi,
   downloadFilename,
   type PublicSoundResult,
@@ -18,6 +17,7 @@ import {
   resultPath,
   shouldSubmitThoughtOnEnter,
 } from "@/lib/how-it-sounds";
+import { AudioScrubber } from "@/components/ui/waveform";
 import ExploreSoundsLink from "./ExploreSoundsLink";
 import SoundOrb from "./SoundOrb";
 import SoundLoading from "./SoundLoading";
@@ -50,8 +50,6 @@ function friendlyError(error: unknown) {
 
 function WaveformPlayer({ result }: { result: PublicSoundResult }) {
   const audioRef = useRef<HTMLAudioElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const frameRef = useRef<HTMLDivElement>(null);
   const [bins, setBins] = useState(EMPTY_BINS);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
@@ -80,53 +78,6 @@ function WaveformPlayer({ result }: { result: PublicSoundResult }) {
     void decodeWaveform();
     return () => controller.abort();
   }, [result.audioUrl]);
-
-  const draw = useCallback(() => {
-    const canvas = canvasRef.current;
-    const frame = frameRef.current;
-    if (!canvas || !frame) return;
-
-    const width = frame.clientWidth;
-    const height = 88;
-    const ratio = window.devicePixelRatio || 1;
-    canvas.width = width * ratio;
-    canvas.height = height * ratio;
-    canvas.style.width = `${width}px`;
-    canvas.style.height = `${height}px`;
-
-    const context = canvas.getContext("2d");
-    if (!context) return;
-    context.scale(ratio, ratio);
-    context.clearRect(0, 0, width, height);
-
-    const layout = createWaveformLayout(bins, width);
-    const progress = duration > 0 ? currentTime / duration : 0;
-    const playedUntil = progress * width;
-
-    layout.bins.forEach((bin, index) => {
-      const x = index * (layout.barWidth + layout.gap);
-      const barHeight = Math.max(2, bin * 62);
-      context.fillStyle = x <= playedUntil ? "#171717" : "#d7d7d4";
-      context.fillRect(
-        x,
-        (height - barHeight) / 2,
-        layout.barWidth,
-        barHeight,
-      );
-    });
-
-    if (progress > 0) {
-      context.fillStyle = "#171717";
-      context.fillRect(Math.min(width - 1, playedUntil), 7, 1, height - 14);
-    }
-  }, [bins, currentTime, duration]);
-
-  useEffect(() => {
-    draw();
-    const observer = new ResizeObserver(draw);
-    if (frameRef.current) observer.observe(frameRef.current);
-    return () => observer.disconnect();
-  }, [draw]);
 
   async function togglePlayback() {
     const audio = audioRef.current;
@@ -174,27 +125,14 @@ function WaveformPlayer({ result }: { result: PublicSoundResult }) {
         </button>
 
         <div className="min-w-0 flex-1">
-          <div
-            ref={frameRef}
-            className="relative focus-within:outline-1 focus-within:outline-offset-4 focus-within:outline-neutral-500"
-          >
-            <canvas
-              ref={canvasRef}
-              className="block w-full"
-              aria-hidden="true"
-            />
-            <input
-              type="range"
-              min="0"
-              max={duration || 0}
-              step="0.01"
-              value={currentTime}
-              onChange={(event) => seek(Number(event.currentTarget.value))}
-              className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
-              aria-label="Seek through sound"
-              disabled={!duration}
-            />
-          </div>
+          <AudioScrubber
+            data={bins}
+            currentTime={currentTime}
+            duration={duration}
+            onSeek={seek}
+            showHandle={duration > 0}
+            height={88}
+          />
           <div className="mt-1 flex justify-between text-[11px] text-neutral-500">
             <span>{formatTime(currentTime)}</span>
             <span>{formatTime(duration)}</span>

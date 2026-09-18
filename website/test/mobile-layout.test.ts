@@ -171,4 +171,60 @@ describe("browser behavior", () => {
 
     await page.close();
   });
+
+  test("the public sound uses a visible keyboard-accessible audio scrubber", async () => {
+    const page = await browser.newPage({ viewport: { width: 320, height: 720 } });
+    const id = "a".repeat(64);
+
+    await page.route(`http://localhost:3000/v1/how-it-sounds/${id}`, async (route) => {
+      await route.fulfill({
+        status: 200,
+        headers: {
+          "access-control-allow-origin": "*",
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          id,
+          thought: "Rain settling over the city",
+          audioUrl: "https://audio.test/sound.mp3",
+          createdAt: "2026-09-18T12:00:00.000Z",
+        }),
+      });
+    });
+    await page.route("https://audio.test/**", async (route) => {
+      await route.fulfill({
+        status: 200,
+        headers: { "content-type": "audio/mpeg" },
+        body: "",
+      });
+    });
+
+    await page.goto(`${BASE_URL}/how-it-sounds/${id}`, {
+      waitUntil: "networkidle",
+    });
+    await page.getByText("Rain settling over the city").waitFor();
+    await page.locator("audio").evaluate((audio) => {
+      Object.defineProperty(audio, "duration", {
+        configurable: true,
+        value: 12,
+      });
+      audio.dispatchEvent(new Event("loadedmetadata"));
+    });
+
+    const scrubber = page.getByRole("slider", { name: "Seek through sound" });
+    expect(
+      await scrubber.evaluate((element) => getComputedStyle(element).opacity),
+    ).toBe("1");
+
+    await scrubber.focus();
+    await page.keyboard.press("ArrowRight");
+    expect(await scrubber.getAttribute("aria-valuenow")).toBe("1");
+    expect(await page.locator("audio").evaluate((audio) => audio.currentTime)).toBe(1);
+
+    const box = await scrubber.boundingBox();
+    if (!box) throw new Error("Audio scrubber was not visible");
+    expect(box.x + box.width).toBeLessThanOrEqual(320);
+
+    await page.close();
+  });
 });
