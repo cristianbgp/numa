@@ -119,4 +119,56 @@ describe("browser behavior", () => {
     );
     expect(await errorAnimation("reduce")).toBe("generation-error-fade");
   });
+
+  test("explore sounds keeps its content stable while only the arrow moves", async () => {
+    async function hoverResult(reducedMotion: "no-preference" | "reduce") {
+      const page = await browser.newPage();
+      await page.emulateMedia({ reducedMotion });
+      await page.goto(`${BASE_URL}/how-it-sounds`, {
+        waitUntil: "networkidle",
+      });
+
+      const link = page.getByRole("link", { name: "explore sounds" });
+      const arrow = link.locator("svg");
+      await link.scrollIntoViewIfNeeded();
+      const before = await arrow.boundingBox();
+      await link.hover();
+      await page.waitForTimeout(200);
+      const after = await arrow.boundingBox();
+      const opacity = await link.evaluate(
+        (element) => getComputedStyle(element).opacity,
+      );
+      await page.close();
+
+      if (!before || !after) throw new Error("Explore arrow was not visible");
+      return { opacity, arrowShift: after.x - before.x };
+    }
+
+    const standard = await hoverResult("no-preference");
+    const reduced = await hoverResult("reduce");
+
+    expect(standard.opacity).toBe("1");
+    expect(standard.arrowShift).toBeGreaterThan(1.8);
+    expect(standard.arrowShift).toBeLessThan(2.2);
+    expect(reduced.opacity).toBe("1");
+    expect(Math.abs(reduced.arrowShift)).toBeLessThan(0.1);
+  });
+
+  test("thought character count follows the textarea value", async () => {
+    const page = await browser.newPage();
+    await page.goto(`${BASE_URL}/how-it-sounds`, {
+      waitUntil: "networkidle",
+    });
+
+    const thought = page.getByLabel("what is on your mind?");
+    const counter = page.getByText("0 / 240", { exact: true });
+
+    expect(await counter.count()).toBe(1);
+    await thought.fill("quiet afternoon");
+    expect(
+      await page.getByText("15 / 240", { exact: true }).count(),
+    ).toBe(1);
+
+    await page.close();
+  });
 });

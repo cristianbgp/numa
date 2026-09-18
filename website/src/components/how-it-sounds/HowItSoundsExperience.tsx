@@ -18,6 +18,7 @@ import {
   resultPath,
   shouldSubmitThoughtOnEnter,
 } from "@/lib/how-it-sounds";
+import ExploreSoundsLink from "./ExploreSoundsLink";
 import SoundOrb from "./SoundOrb";
 import SoundLoading from "./SoundLoading";
 
@@ -34,6 +35,7 @@ type ViewState =
   | { name: "error"; message: string };
 
 const EMPTY_BINS = Array<number>(160).fill(0.08);
+const THOUGHT_MAX_LENGTH = 240;
 
 function formatTime(seconds: number) {
   if (!Number.isFinite(seconds)) return "0:00";
@@ -267,12 +269,7 @@ function ResultView({
               turn a thought into sound.
             </p>
           </div>
-          <a
-            href="/how-it-sounds/gallery"
-            className="shrink-0 border-b border-current pb-1 text-xs transition-opacity hover:opacity-55"
-          >
-            explore sounds
-          </a>
+          <ExploreSoundsLink />
         </div>
       </div>
 
@@ -434,16 +431,23 @@ export default function HowItSoundsExperience({
             </div>
           ) : (
             <form onSubmit={(event) => void submit(event)} className="mt-14">
-              <label htmlFor="thought" className="text-xs text-neutral-500">
-                what is on your mind?
-              </label>
+              <div className="flex items-center justify-between gap-4 text-xs text-neutral-500">
+                <label htmlFor="thought">what is on your mind?</label>
+                <output
+                  htmlFor="thought"
+                  className="shrink-0 tabular-nums"
+                  aria-label={`${thought.length} of ${THOUGHT_MAX_LENGTH} characters used`}
+                >
+                  {thought.length} / {THOUGHT_MAX_LENGTH}
+                </output>
+              </div>
               <textarea
                 id="thought"
                 name="thought"
                 value={thought}
                 onChange={(event) => setThought(event.currentTarget.value)}
                 onKeyDown={handleThoughtKeyDown}
-                maxLength={240}
+                maxLength={THOUGHT_MAX_LENGTH}
                 rows={3}
                 autoFocus
                 placeholder="the first warm evening after a long winter"
@@ -481,12 +485,7 @@ export default function HowItSoundsExperience({
         <p className="text-[11px] text-neutral-400">
           made slowly, one sound at a time
         </p>
-        <a
-          href="/how-it-sounds/gallery"
-          className="shrink-0 border-b border-current pb-1 text-xs transition-opacity hover:opacity-55"
-        >
-          explore sounds
-        </a>
+        <ExploreSoundsLink />
       </div>
     </section>
   );

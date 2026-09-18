@@ -194,6 +194,20 @@
     animation-duration: var(--orb-secondary-duration);
     animation-delay: var(--orb-secondary-delay);
   }
+
+  .sound-orb--static .sound-orb__glow {
+    animation: none;
+  }
+
+  .sound-orb--static .sound-orb__glow--primary {
+    opacity: 0.84;
+    transform: translate3d(0, 0, 0) scale(1.06);
+  }
+
+  .sound-orb--static .sound-orb__glow--secondary {
+    opacity: 0.62;
+    transform: translate3d(0, 0, 0) scale(1.05);
+  }
 }
 
 @keyframes sound-orb-primary-drift {
@@ -278,6 +292,16 @@
   }
 }
 
+.explore-sounds-arrow {
+  transition: transform 150ms ease-out;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .group:hover .explore-sounds-arrow {
+    transform: translateX(2px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .sound-orb {
     transform: none !important;
@@ -293,6 +317,11 @@
   .generation-error {
     animation: generation-error-fade 180ms ease-out;
     transform: none;
+  }
+
+  .explore-sounds-arrow {
+    transform: none !important;
+    transition: none;
   }
 
   .sound-orb__glow {
