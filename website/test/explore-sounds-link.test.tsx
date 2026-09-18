@@ -15,7 +15,8 @@ describe("ExploreSoundsLink", () => {
 
     expect(markup).toContain('href="/how-it-sounds/gallery"');
     expect(markup).toContain("explore sounds");
-    expect(markup.match(/sound-orb--static/g)).toHaveLength(3);
+    expect(markup).not.toContain("sound-orb--static");
+    expect(markup.match(/animate-none/g)).toHaveLength(6);
     expect(markup).toContain("lucide-arrow-right");
   });
 });

@@ -14,7 +14,8 @@ export default function ExploreSoundsLink() {
           <SoundOrb
             key={id}
             id={id}
-            className="sound-orb--static size-3.5 ring-1 ring-white"
+            animated={false}
+            className="size-3.5 ring-1 ring-white"
           />
         ))}
       </span>

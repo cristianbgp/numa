@@ -164,52 +164,6 @@
   }
 }
 
-@layer components {
-  .sound-orb {
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-  }
-
-  .sound-orb__glow {
-    position: absolute;
-    inset: -20%;
-    border-radius: 9999px;
-    pointer-events: none;
-    animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-  }
-
-  .sound-orb__glow--primary {
-    background: var(--orb-primary-background);
-    animation-name: sound-orb-primary-drift;
-    animation-duration: var(--orb-primary-duration);
-    animation-delay: var(--orb-primary-delay);
-  }
-
-  .sound-orb__glow--secondary {
-    background: var(--orb-secondary-background);
-    animation-name: sound-orb-secondary-drift;
-    animation-duration: var(--orb-secondary-duration);
-    animation-delay: var(--orb-secondary-delay);
-  }
-
-  .sound-orb--static .sound-orb__glow {
-    animation: none;
-  }
-
-  .sound-orb--static .sound-orb__glow--primary {
-    opacity: 0.84;
-    transform: translate3d(0, 0, 0) scale(1.06);
-  }
-
-  .sound-orb--static .sound-orb__glow--secondary {
-    opacity: 0.62;
-    transform: translate3d(0, 0, 0) scale(1.05);
-  }
-}
-
 @keyframes sound-orb-primary-drift {
   0% {
     opacity: 0.5;
@@ -303,11 +257,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sound-orb {
-    transform: none !important;
-    transition: none !important;
-  }
-
   .sound-loading__orb {
     animation: none;
     opacity: 1;
@@ -322,19 +271,5 @@
   .explore-sounds-arrow {
     transform: none !important;
     transition: none;
-  }
-
-  .sound-orb__glow {
-    animation: none;
-  }
-
-  .sound-orb__glow--primary {
-    opacity: 0.84;
-    transform: translate3d(0, 0, 0) scale(1.06);
-  }
-
-  .sound-orb__glow--secondary {
-    opacity: 0.62;
-    transform: translate3d(0, 0, 0) scale(1.05);
   }
 }

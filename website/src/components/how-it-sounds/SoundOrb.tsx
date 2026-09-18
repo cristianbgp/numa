@@ -1,9 +1,11 @@
 import type { CSSProperties } from "react";
 import { soundArtwork } from "@/lib/how-it-sounds";
+import { cn } from "@/lib/utils";
 
 type Props = {
   id: string;
   className?: string;
+  animated?: boolean;
 };
 
 type OrbStyle = CSSProperties & Record<`--orb-${string}`, string>;
@@ -29,15 +31,41 @@ function artworkStyle(id: string): OrbStyle {
   };
 }
 
-export default function SoundOrb({ id, className = "" }: Props) {
+const glowClassName =
+  "pointer-events-none absolute -inset-[20%] rounded-full [animation-direction:alternate] [animation-iteration-count:infinite] [animation-timing-function:cubic-bezier(0.645,0.045,0.355,1)]";
+
+export default function SoundOrb({
+  id,
+  className = "",
+  animated = true,
+}: Props) {
   return (
     <div
-      className={`sound-orb rounded-full ${className}`.trim()}
+      className={cn(
+        "relative isolate overflow-hidden rounded-full motion-reduce:transform-none motion-reduce:transition-none",
+        className,
+      )}
       style={artworkStyle(id)}
       aria-hidden="true"
     >
-      <span className="sound-orb__glow sound-orb__glow--primary" />
-      <span className="sound-orb__glow sound-orb__glow--secondary" />
+      <span
+        className={cn(
+          glowClassName,
+          "[background:var(--orb-primary-background)]",
+          animated
+            ? "[animation-delay:var(--orb-primary-delay)] [animation-duration:var(--orb-primary-duration)] [animation-name:sound-orb-primary-drift] motion-reduce:animate-none motion-reduce:opacity-[0.84] motion-reduce:[transform:translate3d(0,0,0)_scale(1.06)]"
+            : "animate-none opacity-[0.84] [transform:translate3d(0,0,0)_scale(1.06)]",
+        )}
+      />
+      <span
+        className={cn(
+          glowClassName,
+          "[background:var(--orb-secondary-background)]",
+          animated
+            ? "[animation-delay:var(--orb-secondary-delay)] [animation-duration:var(--orb-secondary-duration)] [animation-name:sound-orb-secondary-drift] motion-reduce:animate-none motion-reduce:opacity-[0.62] motion-reduce:[transform:translate3d(0,0,0)_scale(1.05)]"
+            : "animate-none opacity-[0.62] [transform:translate3d(0,0,0)_scale(1.05)]",
+        )}
+      />
     </div>
   );
 }

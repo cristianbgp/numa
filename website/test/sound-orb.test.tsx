@@ -15,9 +15,24 @@ describe("SoundOrb", () => {
     );
 
     expect(markup).toContain('aria-hidden="true"');
-    expect(markup).toContain("sound-orb");
     expect(markup).toContain("size-64");
     expect(markup).toContain("--orb-drift-x:22%");
     expect(markup.match(/<span/g)).toHaveLength(2);
+  });
+
+  test("renders a static orb through its component API", async () => {
+    const componentPath = "../src/components/how-it-sounds/SoundOrb";
+    const module = await import(componentPath).catch(() => null);
+
+    expect(module).not.toBeNull();
+    if (!module) return;
+
+    const SoundOrb = module.default;
+    const markup = renderToStaticMarkup(
+      <SoundOrb id={"b".repeat(64)} animated={false} />,
+    );
+
+    expect(markup).not.toContain("sound-orb--static");
+    expect(markup.match(/animate-none/g)).toHaveLength(2);
   });
 });
