@@ -93,6 +93,24 @@ describe("browser behavior", () => {
     await page.close();
   });
 
+  test("about exposes the repository without replacing the current page", async () => {
+    const page = await browser.newPage();
+    await page.goto(`${BASE_URL}/about`, { waitUntil: "networkidle" });
+
+    const sourceLink = page.getByRole("link", { name: "view the source ↗" });
+    expect(await sourceLink.count()).toBe(1);
+    expect(await sourceLink.getAttribute("href")).toBe(
+      "https://github.com/cristianbgp/numa",
+    );
+    expect(await sourceLink.getAttribute("target")).toBe("_blank");
+    expect((await sourceLink.getAttribute("rel"))?.split(" ").sort()).toEqual([
+      "noopener",
+      "noreferrer",
+    ]);
+
+    await page.close();
+  });
+
   test("generation errors shake unless reduced motion is requested", async () => {
     async function errorAnimation(reducedMotion: "no-preference" | "reduce") {
       const page = await browser.newPage();
